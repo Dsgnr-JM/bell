@@ -1,0 +1,172 @@
+/*
+ |--------------------------------------------------------------------------
+ | Bell.js es un proyecto OpenSource creado por JotaDev, para crear de manera 
+ | rapida alertas parecidas a Sonner en cualquier proyectos vanilla y sin  
+ | necesidad de React.
+ | Sitio Web de bell: https://belljs.github.io
+ | Sito Web del Creador: https://jotadev0.vercel.app
+ |--------------------------------------------------------------------------
+ |
+ | Bell.js necesita este archivo Css para mostrarse al usuario correctamente,
+ | recuerda este proyecto no necesita dependencias adicionales a bell.js.
+ |
+ */
+/* Customs Properties para el bell */
+
+:root {
+  --bell_svg: rgba(0, 0, 0, 1);
+  --bell_title: rgba(10, 10, 10, 0.7);
+  --bell_description: rgba(100, 100, 100, 0.65);
+  --bell_bg: rgba(255, 255, 255, 1);
+  --bell_border: rgba(0, 0, 0, 0.1);
+}
+
+/* Contenerdor del bell */
+
+.bell_container {
+  cursor: pointer;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 7px;
+  width: 320px;
+  height: fit-content;
+  border: 1px ridge var(--bell_border);
+  border-radius: 7px;
+  background-color: var(--bell_bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  z-index: 100;
+  opacity: 0;
+  transition: 0.15s all ease-in;
+}
+
+/* Componentes del bellAlert */
+
+.bell_icon {
+  height: 20px;
+  width: 20px;
+}
+.bell_icon svg {
+  color: var(--bell_svg);
+  object-fit: cover;
+}
+.bell_text-container {
+  flex: 1;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bell_title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--bell_title);
+  padding: 0;
+  margin: 0;
+}
+.bell_description {
+  color: var(--bell_description);
+  padding: 0;
+  margin: 0;
+  font-size: 0.65rem;
+}
+
+/* Posicionamiento del bell*/
+
+.bell_container.bottom-right {
+  bottom: -70px;
+  right: 20px;
+}
+.bell_container.bottom-left {
+  bottom: -70px;
+  left: 20px;
+}
+.bell_container.top-right {
+  top: -70px;
+  right: 20px;
+}
+.bell_container.top-left {
+  top: -70px;
+  left: 20px;
+}
+
+/* Tipos de bell */
+
+.bell_container.info {
+  --bell_svg: rgb(8, 145, 199);
+  --bell_title: rgb(11, 146, 199);
+  --bell_description: rgb(24 96 139 / 0.7);
+  --bell_bg: rgb(231, 244, 255);
+  --bell_border: rgba(8, 145, 199, 0.25);
+}
+.bell_container.warning {
+  --bell_svg: rgb(199, 110, 8);
+  --bell_title: rgb(181, 99, 5);
+  --bell_description: rgba(139, 85, 24, 0.7);
+  --bell_bg: rgb(255, 239, 223);
+  --bell_border: rgba(199, 84, 8, 0.39);
+}
+.bell_container.error {
+  --bell_svg: rgb(199, 8, 8);
+  --bell_title: rgb(181, 5, 5, 0.9);
+  --bell_description: rgba(139, 24, 24, 0.65);
+  --bell_bg: rgb(255, 235, 235);
+  --bell_border: rgba(199, 8, 8, 0.1);
+}
+.bell_container.loading {
+  --bell_svg: rgb(113, 119, 116);
+  --bell_title: rgba(71, 73, 73, 0.918);
+  --bell_description: rgba(106, 110, 108, 0.89);
+  --bell_bg: rgb(241, 245, 242);
+  --bell_border: rgba(118, 122, 122, 0.2);
+}
+.bell_container.check {
+  --bell_svg: rgb(8, 199, 18);
+  --bell_title: rgba(24, 141, 14, 0.76);
+  --bell_description: rgba(43, 139, 24, 0.7);
+  --bell_bg: rgb(241, 255, 245);
+  --bell_border: rgba(24, 199, 8, 0.2);
+}
+
+/* Transiciones para el bell */
+
+.bell_container.active {
+  opacity: 1;
+}
+.bell_container.active.bottom-right,
+.bell_container.active.bottom-left {
+  bottom: 20px;
+  --top:20px;
+}
+.bell_container.active.top-right,
+.bell_container.active.top-left {
+  top: 20px;
+  --top:20px;
+}
+.bell_container.fade {
+  transition-timing-function: ease-in;
+}
+.bell_container.be {
+  transition-timing-function: ease-in;
+}
+.bell_container.bezier {
+  transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.bell_container.fade-in {
+  transition-timing-function: ease-in-out;
+}
+.bell_container.top-right.active.hover,
+.bell_container.top-left.active.hover {
+  top: var(--top);
+  scale: 1 !important;
+}
+
+.bell_container.bottom-right.active.hover,
+.bell_container.bottom-left.active.hover {
+  bottom: var(--top) !important;
+  scale: 1 !important;
+}
