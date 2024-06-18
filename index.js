@@ -232,3 +232,5 @@ class Bell {
   }
 }
 // Atento Primero se crea la instancia y luego se lanza
+
+export default Bell
