@@ -1,0 +1,13 @@
+{
+  "name": "bell",
+  "version": "1.0.0",
+  "description": "Alert library based in Sonner, but agnostic to JavaScript enviroment",
+  "main": "index.js",
+  "types":"index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["alert", "sonner", "bell", "agnostic", "fast","performance","no-dependencies"],
+  "author": "jotadev",
+  "license": "MIT"
+}

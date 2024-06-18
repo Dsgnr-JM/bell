@@ -32,6 +32,8 @@ const $icons = {
 const bellState = {
   timeScreen: null,
   position: null,
+  num: 0,
+  timeBetween: 0
 };
 
 class Bell {
@@ -41,27 +43,36 @@ class Bell {
   /**
    * Bell.js es un proyecto OpenSource creado por JotaDev, para crear de manera rapida alertas parecidas a Sonner en cualquier proyectos vanilla y sin necesidad de React.
    * @author JotaDev <https://jotade0.vercel.app>
-   * @param {Object} text - Se indica el parametro title y description
-   * @param {String} type - Se indica el tipo de alerta
-   * @param {Object} options - Se indica cada uno de los paramentros opcionales
-   * @returns {bell} - Retorna una intancia de bell
+   * @param {Object} text - Objeto con las propiedades title y description
+   * @param {String} text.title - Titulo de la alerta
+   * @param {String} text.description - Descripcion de la alerta
+   * @typedef {'info' | 'warning' | 'check' | 'loading' | 'error'} TipoAlerta
+   * @typedef {'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'} TipoPosition
+   * @typedef {'ease-in' | 'ease-in-out' | 'bound' | 'bound-2' } TipoAnimacion
+   * @param {TipoAlerta} type - Se indica el tipo de alerta
+   * @param {Object} options - Opciones adicionales para la alerta
+   * @param {Boolean} options.animate - Animacion para la alerta
+   * @param {Boolean} options.isColored - Coloreado de alertas
+   * @param {Number} options.transitionDuration - Duracion de las transiciones
+   * @param {TipoPosition} options.position - Posicion de la alerta
+   * @param {TipoAnimacion} options.typeAnimation - Tipo de animacion
+   * @param {Number} options.timeScreen - Tiempo en pantalla
+   * @param {Boolean} options.expand - Efecto de Expansion
+   * @returns {Bell} - Clase Bell
    */
   constructor(text, type, options) {
     this.text = text;
     this.type = type;
+    this.animate = options?.animate ?? false;
+    this.isColored = options?.isColored ?? false;
+    this.transitionDuration = options?.transitionDuration ?? 300;
+    this.position = bellState.position ?? options?.position ?? "bottom-right";
+    this.typeAnimation = options?.typeAnimation ?? "fade-in";
+    this.timeScreen = bellState.timeScreen ?? options?.timeScreen ?? 1500;
+    this.expand = options?.expand ?? false;
+    if (!bellState.timeScreen) bellState.timeScreen = this.timeScreen;
 
-    if (options) {
-      this.animate = options?.animate;
-      this.isColored = options?.isColored;
-      this.transitionDuration = options?.transitionDuration ?? 150;
-      this.position = bellState.position ?? options?.position ?? "bottom-right";
-      this.typeAnimation = options?.typeAnimation;
-      this.timeScreen = bellState.timeScreen ?? options?.timeScreen ?? 1500;
-      this.expand = options?.expand;
-      if (!bellState.timeScreen) bellState.timeScreen = this.timeScreen;
-
-      if (!bellState.position) bellState.position = this.position;
-    }
+    if (!bellState.position) bellState.position = this.position;
 
     this.$bellContainer = document.createElement("div");
     const classContainer = ["bell_container", this.position];
@@ -77,6 +88,7 @@ class Bell {
     }
 
     this.$bellContainer.classList.add(...classContainer);
+    this.$bellContainer.classList.add(this.typeAnimation)
 
     $bellIcon.classList.add("bell_icon");
     $bellIcon.innerHTML = $icons[this.type];
@@ -94,11 +106,14 @@ class Bell {
 
     $bellTextContainer.append(...insertText);
     this.$bellContainer.append($bellIcon, $bellTextContainer);
-    this.$bellContainer.style.transitionDuration = `${this.transitionDuration}ms`;
+    this.$bellContainer.setAttribute("bell-num", bellState.num++)
 
     if (!this.animate) this.$bellContainer.style.transition = "none";
 
     document.querySelector("body").append(this.$bellContainer);
+    bellState.timeBetween = Number((document.querySelectorAll(".bell_container").length - 1).toString() + "0")
+    this.$bellContainer.style.transitionDuration = `${this.transitionDuration}ms`;
+    this.$bellContainer.style.transitionDelay = `${bellState.timeBetween}ms`
   }
 
   /**
@@ -106,7 +121,7 @@ class Bell {
    * @param {Object} e
    */
   hover(e) {
-    const { fromElement } = e;
+    const { fromElement, target } = e;
     const isBell = fromElement?.classList[0] === ("bell_container") ||
       fromElement?.classList[0] === ("active") ||
       fromElement?.classList[0] === ("bell_text-container") ||
@@ -120,82 +135,100 @@ class Bell {
       for (let i = 0; i < this.$bellNums.length; i++) {
         this.$bellNums[i].classList.add("hover");
       }
-    } else {
+    } else if (target.classList[0] !== "bell_container") {
       for (let i = 0; i < this.$bellNums.length; i++) {
         this.$bellNums[i].classList.remove("hover");
       }
     }
   }
+  setPositions($bellNums, isRemove) {
+    const $bellPrev = isRemove && this.$bellNums.length > 2 ? this.$bellNums[this.$bellNums.length - 3] :
+      this.$bellNums[this.$bellNums.length - 1].previousElementSibling;
+    if ($bellPrev?.className.includes("active"))
+      $bellPrev.style.scale = ".95";
+    let firstBell = $bellNums[$bellNums.length > 1 ? ($bellNums.length - 1) : 0]
+    firstBell = firstBell ?? document.querySelector(".bell_container")
+    firstBell.style.scale = "1"
+    if (
+      $bellPrev?.className.includes("top-left") ||
+      $bellPrev?.className.includes("top-right")
+    ) {
+      $bellPrev.style.top = "32px";
+      firstBell.style.top = "20px"
+    }
+    else if($bellPrev?.className.includes("bell_container")) {
+          $bellPrev.className.includes("bell_container");
+          $bellPrev.style.bottom = "32px"; firstBell.style.bottom = "20px" }
+    if (this.$bellNums.length > 2) {
+      const $bellPrevPrev = $bellPrev?.previousElementSibling;
+      if ($bellPrevPrev?.className.includes("bell_container")) $bellPrevPrev.style.scale = ".90";
+      if (
+        $bellPrev?.className.includes("top-right") ||
+        $bellPrev?.className.includes("top-left") &&
+        $bellPrevPrev?.className.includes("bell_container")
+      )
+        $bellPrevPrev.style.top = "43px";
+      if (
+        $bellPrev?.className.includes("bottom-left") ||
+        $bellPrev?.className.includes("bottom-right")
+      )
+        $bellPrevPrev.style.bottom = "43px";
+    }
+    [...$bellNums].reverse().forEach(($bell, i) => {
+      const top = 20 + ($bell.clientHeight + 15) * i
+      $bell.style.setProperty("--top", `${top}px`);
+      if ($bell.className.includes("hover")) this.$bellContainer.classList.add("hover")
+    });
+  }
+  removeOnClick() {
+    this.$bellNums = document.querySelectorAll(".bell_container");
+    const $bells = [...this.$bellNums].filter($bell => {
+      return $bell.getAttribute("bell-num") !== this.$bellContainer.getAttribute("bell-num")
+    })
+    this.removeOfScreen($bells)
+
+  }
   /**
-   * Metodo que lanza el bellAlert y lo muestra en pantalla
+   * Metodo que lanza el bellAlert y lo mues¨tra en pantalla
    */
   launch() {
     setTimeout(() => {
+      this.$bellContainer.addEventListener("click", this.removeOnClick.bind(this))
+      let time = this.timeScreen;
       this.$bellNums = document.querySelectorAll(".bell_container");
-      if (this.$bellNums.length > 1) {
-        const $bellPrev =
-          this.$bellNums[this.$bellNums.length - 1].previousElementSibling;
-        $bellPrev.style.scale = ".95";
-        if ($bellPrev.className.includes("active"))
-          if (
-            $bellPrev.className.includes("top-left") ||
-            $bellPrev.className.includes("top-right")
-          )
-            $bellPrev.style.top = "30px";
-        if (
-          $bellPrev.className.includes("bottom-left") ||
-          $bellPrev.className.includes("bottom-right")
-        )
-          $bellPrev.style.bottom = "30px";
-        if (this.$bellNums.length > 2) {
-          const $bellPrevPrev = $bellPrev.previousElementSibling;
-          $bellPrevPrev.style.scale = ".90";
-          if (
-            $bellPrev.className.includes("top-right") ||
-            $bellPrev.className.includes("top-left")
-          )
-            $bellPrevPrev.style.top = "40px";
-          if (
-            $bellPrev.className.includes("bottom-left") ||
-            $bellPrev.className.includes("bottom-right")
-          )
-            $bellPrevPrev.style.bottom = "40px";
-        }
-        this.$bellNums.forEach(($bell, i) => {
-          const top = 20 + Math.abs(i - this.$bellNums.length + 1) * 70;
-          $bell.style.setProperty("--top", `${top}px`);
-        });
-      }
-      let time = this.timeScreen + this.transitionDuration;
+      this.setPositions(this.$bellNums)
       this.$bellContainer.classList.add("active");
-      document.body.addEventListener("mouseover", this.hover);
+      if (this.expand) document.body.addEventListener("mouseover", this.hover);
+      else this.$bellNums.forEach($bell => $bell.classList.add("hover"))
       const Timer = setTimeout(() => {
-        this.$bellContainer.classList.remove("active");
-        if (
-          this.$bellContainer.className.includes("top-left") ||
-          this.$bellContainer.className.includes("top-right")
-        )
-          this.$bellContainer.style.top = "-75px";
-        if (
-          this.$bellContainer.className.includes("bottom-left") ||
-          this.$bellContainer.className.includes("bottom-right")
-        )
-          this.$bellContainer.style.bottom = "-75px";
-        // this.remove();
+        this.removeOfScreen(this.$bellNums);
       }, time);
     }, 80)
   }
   /**
    * Metodo que remueve el bellAlert del DOM
    */
-  remove() {
+  removeOfScreen($bells) {
     /* Metodo que saca al bellAlert de la pantalla y remueve el elemento del DOM, ademas quita el hover */
+    this.$bellContainer.classList.remove("active");
+    $bells = $bells.filter($bell => $bell.className.includes("active"))
+    this.setPositions($bells, $bells !== this.$bellNums)
+    if (
+      this.$bellContainer.className.includes("top-left") ||
+      this.$bellContainer.className.includes("top-right")
+    )
+      this.$bellContainer.style.top = "-75px";
+    if (
+      this.$bellContainer.className.includes("bottom-left") ||
+      this.$bellContainer.className.includes("bottom-right")
+    )
+      this.$bellContainer.style.bottom = "-75px";
 
     setTimeout(() => {
       this.$bellContainer.remove();
-      document.body.removeEventListener("mouseover", this.hover);
-    }, this.transitionDuration + 100);
+      if (this.expand && this.$bellNums === $bells) document.body.removeEventListener("mouseover", this.hover);
+      if(document.querySelectorAll(".bell_container").length === 0) document.body.removeEventListener("mouseover", this.hover);
+    }, this.transitionDuration + bellState.timeBetween);
   }
 }
 // Atento Primero se crea la instancia y luego se lanza
-

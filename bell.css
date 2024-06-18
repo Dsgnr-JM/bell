@@ -14,11 +14,11 @@
 /* Customs Properties para el bell */
 
 :root {
-  --bell_svg: rgba(0, 0, 0, 1);
+  --bell_svg: rgba(10, 10, 10, 0.7);
   --bell_title: rgba(10, 10, 10, 0.7);
   --bell_description: rgba(100, 100, 100, 0.65);
   --bell_bg: rgba(255, 255, 255, 1);
-  --bell_border: rgba(0, 0, 0, 0.1);
+  --bell_border: rgba(0, 0, 0, 0.05);
 }
 
 /* Contenerdor del bell */
@@ -31,28 +31,41 @@
   justify-self: start;
   align-items: center;
   gap: 10px;
-  padding: 10px 7px;
-  width: 320px;
+  padding: 13px 10px;
+  width: 350px;
   height: fit-content;
   border: 1px ridge var(--bell_border);
   border-radius: 7px;
   background-color: var(--bell_bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   position: fixed;
   z-index: 100;
   opacity: 0;
   transition: 0.15s all ease-in;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.03); 
 }
-
+.bell_container.ease-in{
+  transition-timing-function: ease-in-out;
+}
+.bell_container.ease-in-out{
+  transition-timing-function: ease-in-out;
+}
+.bell_container.bound{
+  transition-timing-function: cubic-bezier(1, 0, 0, 1);
+}
+.bell_container.bound-2{
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+}
 /* Componentes del bellAlert */
 
 .bell_icon {
-  height: 20px;
-  width: 20px;
+  height: 22px;
+  width: 22px;
 }
 .bell_icon svg {
   color: var(--bell_svg);
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 .bell_text-container {
   flex: 1;
@@ -62,7 +75,7 @@
   gap: 2px;
 }
 .bell_title {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--bell_title);
   padding: 0;
@@ -72,7 +85,11 @@
   color: var(--bell_description);
   padding: 0;
   margin: 0;
-  font-size: 0.65rem;
+  font-size: 0.85rem;
+  max-height: 1.2rem;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Posicionamiento del bell*/
@@ -97,39 +114,39 @@
 /* Tipos de bell */
 
 .bell_container.info {
-  --bell_svg: rgb(8, 145, 199);
-  --bell_title: rgb(11, 146, 199);
+  --bell_svg: rgb(46 132 213);
+  --bell_title: rgb(46 132 213);
   --bell_description: rgb(24 96 139 / 0.7);
-  --bell_bg: rgb(231, 244, 255);
-  --bell_border: rgba(8, 145, 199, 0.25);
+  --bell_bg: rgb(242 250 255);
+  --bell_border: rgba(8, 145, 199, 0.15);
 }
 .bell_container.warning {
   --bell_svg: rgb(199, 110, 8);
   --bell_title: rgb(181, 99, 5);
   --bell_description: rgba(139, 85, 24, 0.7);
-  --bell_bg: rgb(255, 239, 223);
-  --bell_border: rgba(199, 84, 8, 0.39);
+  --bell_bg: rgb(255 244 233);
+  --bell_border: rgba(199, 84, 8, 0.1);
 }
 .bell_container.error {
   --bell_svg: rgb(199, 8, 8);
   --bell_title: rgb(181, 5, 5, 0.9);
   --bell_description: rgba(139, 24, 24, 0.65);
-  --bell_bg: rgb(255, 235, 235);
-  --bell_border: rgba(199, 8, 8, 0.1);
+  --bell_bg: rgb(255 240 240);
+  --bell_border: rgba(199, 8, 8, 0.05);
 }
 .bell_container.loading {
   --bell_svg: rgb(113, 119, 116);
   --bell_title: rgba(71, 73, 73, 0.918);
   --bell_description: rgba(106, 110, 108, 0.89);
-  --bell_bg: rgb(241, 245, 242);
-  --bell_border: rgba(118, 122, 122, 0.2);
+  --bell_bg: #f9f9f9;
+  --bell_border: rgba(118, 122, 122, 0.1);
 }
 .bell_container.check {
   --bell_svg: rgb(8, 199, 18);
-  --bell_title: rgba(24, 141, 14, 0.76);
+  --bell_title: rgb(10 127 0);
   --bell_description: rgba(43, 139, 24, 0.7);
   --bell_bg: rgb(241, 255, 245);
-  --bell_border: rgba(24, 199, 8, 0.2);
+  --bell_border: rgba(24, 199, 8, 0.1);
 }
 
 /* Transiciones para el bell */
@@ -147,21 +164,9 @@
   top: 20px;
   --top:20px;
 }
-.bell_container.fade {
-  transition-timing-function: ease-in;
-}
-.bell_container.be {
-  transition-timing-function: ease-in;
-}
-.bell_container.bezier {
-  transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-}
-.bell_container.fade-in {
-  transition-timing-function: ease-in-out;
-}
 .bell_container.top-right.active.hover,
 .bell_container.top-left.active.hover {
-  top: var(--top);
+  top: var(--top) !important;
   scale: 1 !important;
 }
 
