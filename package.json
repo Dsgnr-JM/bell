@@ -1,21 +1,29 @@
 {
-  "name": "@jotadev0/belljs",
-  "version": "1.0.0",
+  "name": "bell-alert",
+  "version": "1.1.0",
   "description": "Alert library based in Sonner, but agnostic to JavaScript enviroment",
   "main": "index.js",
-  "types":"index.d.ts",
+  "types": "index.d.ts",
   "homepage": "https://belljs.vercel.app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["alert", "sonner", "bell", "agnostic", "fast","performance","no-dependencies"],
+  "keywords": [
+    "alert",
+    "sonner",
+    "bell",
+    "agnostic",
+    "fast",
+    "performance",
+    "no-dependencies"
+  ],
   "author": "jotadev",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Dsgnr-JM/bell.git"  
+    "url": "git+https://github.com/Dsgnr-JM/bell.git"
   },
   "bugs": {
-    "url": "https://github.com/Dsgnr-JM/bell/issues" 
+    "url": "https://github.com/Dsgnr-JM/bell/issues"
   }
 }
