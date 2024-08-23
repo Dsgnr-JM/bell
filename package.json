@@ -1,7 +1,7 @@
 {
   "name": "bell-alert",
-  "version": "1.2.1",
-  "description": "Alert library based in Sonner, but agnostic to JavaScript enviroment",
+  "version": "2.0.0",
+  "description": "Light, customizable and agnostic alert library.",
   "main": "index.js",
   "types": "index.d.ts",
   "homepage": "https://belljs.vercel.app",
@@ -10,6 +10,8 @@
   },
   "keywords": [
     "alert",
+    "toastr",
+    "light",
     "sonner",
     "bell",
     "agnostic",
