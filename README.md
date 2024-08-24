@@ -1,91 +1,83 @@
-Bell is a library to create modern and elegant alerts, it is based on the Sonner library but compatible in environments that run with vanilla JavaScript, this library is lightweight in terms of weight, fits your design, has a good performance and does not need dependecies. You can find more information about the project and its development [here](https://github.com/Dsgnr-JM/bell)
+---
+title: Getting started
+description: Get started with BellJs quickly using the package from any source.
+---
 
-## Installation
+import {Tabs,TabItem,Aside} from '@astrojs/starlight/components'
+import Touches from '../../../components/TouchesPlay.astro'
 
-For the moment the Bell package is available from a CDN on Github, we recommend downloading and using them locally. Soon the NPM package available and from a faster CDN.
+BellJs is a lightweight, modern, customizable alert library built in vanilla JavaScript making it agnostic. This guide will help you get started with it in an easy way. Check out the [full api](../../api) for all the information..
+
+## Quick Start
+
+### Using the npm package
+
+To use BellJs in your web project you just need to run the following command inside your project.
+
+```bash
+npm i bell-alert
+```
+
+### Using the official cdn
+
+You can also use a **jsDelivr** cdn or **unpkg** to import the library, as follows.
+
+- **jsDelivr**:
 
 ```html
-<link type="stylesheet" rel="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.css"/>
-
-<script src="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.js"></script>
+<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.css"/>
+<script href="https://www.unpkg.com/bell-alert/dist/bell.js"/>
 ```
 
-## Getting started
-
-These are the first steps to start. Bell works by class instances, this means we must create one in order to launch an alert. The first thing we need is to link our Bell files.
+- **unpkg**:
 
 ```html
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Bell</title>
-    <link type="stylesheet" rel="github.com/Dsgnr-JM/bell/bell.css"/>
-</head>
-<body>
-    <script src="github.com/Dsgnr-JM/bell/bell.js"></script>
-</body>
-</html>
-
+<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.css"/>
+<script href="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.js"/>
 ```
 
-> If you use Bell from the *CDN* you should also imort the CSS.
+>These are the development versions so they are not minified, if you want to use a minified version put the `.min` before the file extension.
 
-Now the next thing we must do is create a Bell instance with necessary parameters for its operation between which we have. The first parameter is an object with the `title`: properties refers to the title of the alert and `description`: refers to the description or secondary text, the second parameters refers to the alert type (`info`,`check`,`error`,`warning`) and finally an object with different configuration properties.
+### Importing the library
+
+Depending on whether you used the **npm** package or the **esm** version you can use the **BellJs** modules:
 
 ```js
-
-const options = [
-    {
-        title:"Hola",
-        description:"mundindo"
-    },
-    "info",
-    {
-        animate: true,
-        isColored:false,
-        transitionDuration: 300,
-        position: "bottom-right",
-        typeAnimation: "fade-in",
-        timeScreen: 10000,
-        expand: true,
-    }
-]
-const bell = new Bell(...options)
-
-
+import Bell from "bell-alert"
+import "bell-alert/dist/bell.min.css" // If you are using a bundler like vite, webpack or other.
 ```
 
-> We pass as parameters the `options` file, this is just a way to pass the parameters
+This will import the library into your project, so you can start using it.
 
-If we review the page, nothing will be showing to launch the alert, you only need to use the `launch` method that refers to the alert being displayed.
+### Creating and using an alert.
 
+With the library already imported you can easily create and use alerts. You just need to create an instance of **Bell** and pass it the parameters.
 
 ```js
+const bell = new Bell(params)
+```
 
+**BellJs** Accepts two required parameters and one optional one, the first is an object with the **title** (it's the title) and the **description** (it's the description), the second is a `string` with the alert type and finally an object with different parameters, you can see them all in the [full api](https://belljs.vercel.app/api).
+
+```js
+const bell = new Bell({
+title: "New alert",
+description: "BellJs is amazing and light"
+},"info")
+```
+
+Once the instance is created, all that's left is to display the alert. You can do this using the `launch` method of the same instance.
+
+```js
 bell.launch()
-
 ```
-Ready now you can use Bell to create your modern and personalized alerts, which work fast and without loss of performance
 
-> You must keep in mind that Bell is destroyed after the execution time or `timescreen` of the same ends.
+### Experiment with BellJs
 
-## Parameters
+Remember that BellJs is made to be customized to the maximum, due to its intuitive API it is very easy to configure it in different ways.
 
-These are some of the parameters that Bell currently accepts with a description and the values it accepts. If you use an LSP you can have autocomplete in the code.
+- **Types**: Learn the different types of alerts in ["Alert Types"](https://belljs.vercel.app/learning-the-basic/choosing-the-type-of-alert).
+- **Themes**: Use and create any theme you can imagine in ["Custom and Community Themes"](https://belljs.vercel.app/learning-the-basic/themes).
+- **Configuration**: Change bell parameters and create something new, all following the ["Change everything"](https://belljs.vercel.app/learning-the-basic/customized-bell) guide.
 
-|Name|Description|Values|
-|---|---|---|
-|`title`:|Indicates the primary text or title|`string`|
-|`description`:|Indicates the secondary text or subtitle|`string`|
-|`type`:|Indicates the type of alert| info check error warning |
-|`animate`?:|Signals whether the animation is activated (false by default)|`boolean`|
-|`isColored`?:|Activates coloring of alerts (default false)|`boolean`|
-|`position`:|Differs the position in which the alert is displayed|`bottom-right` `bottom-left` `top-right` `top-left`|
-|`typeAnimation`:|indicates the way in which the alert is animated|`fade-in`|
-|`timescreen`?:|Differs the time in which the alert is displayed on the screen|`number`|
-|`expand`?:|Indicates if the alert has the animation of expand|`true`|
-
-Many more configuration options are coming soon, so you can fully customize Bell.
+Follow the documentation to learn more about this beautiful alert library adaptable to your current design.
