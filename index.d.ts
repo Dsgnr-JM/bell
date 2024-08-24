@@ -28,7 +28,7 @@ declare module 'bell-alert' {
     customIcon?: string;
     customStyles?: BellStyles;
     customClass?: string;
-    theme?: 'default'|'colors'|'light'|'gradient'|'chackra'|null|
+    theme?: 'default'|'colors'|'light'|'gradient'|'chackra'|null;
     typeAnimation?: 'fade-in' | 'fade-out' | 'bound' | 'bound-2'; // Type of animation (default: 'fade-in')
     screenTime?: number; // Duration for which notification stays visible (default: 1500ms)
     expand?: boolean; // Enable hover effect to expand content (default: false)
@@ -47,7 +47,7 @@ declare module 'bell-alert' {
 
   // Class representing a notification alert
   export class Bell {
-    constructor(text: BellText, type?: 'info' | 'warning' | 'success' | 'error' | 'promise'| 'none'|, options?: BellOptions);
+    constructor(text: BellText, type?: 'info' | 'warning' | 'success' | 'error' | 'promise'| 'none', options?: BellOptions);
 
     // Launches and displays the notification
     launch(): void;
@@ -58,9 +58,20 @@ declare module 'bell-alert' {
     // Removes the notification from the DOM and animates its exit
     dismiss(bells: HTMLElement[]): void;
     
-    promise(promise: Promise, state: BellState):void
+    promise(promise: Promise<T>, state: BellState):void
   }
 }
+
+interface BellIcons {
+  promise: string;
+  error: string;
+  success: string;
+  info: string;
+  warning: string;
+  none: string;
+}
+
+export const bIcons:BellIcons;
 
 export default Bell;
 
