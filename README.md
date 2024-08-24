@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Dsgnr-JM/bell/raw/master/logo.png" alt="Logo" height="105">
+  <img src="https://github.com/Dsgnr-JM/bell/raw/master/banner.svg" alt="Logo" style="width:100%">
 </div>
 
 <div align="center">
