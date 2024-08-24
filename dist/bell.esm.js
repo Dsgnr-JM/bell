@@ -1,6 +1,6 @@
 /* Iconos disponibles para el Bell.js*/
 
-const bIcons = {
+export const bIcons = {
   promise: `<svg xmlns="http://www.w3.org/2000/svg" width=40 height=40 viewBox="0 0 200 200"><radialGradient id="a" cx=".66" fx=".66" cy=".313" fy=".313" gradientTransform="scale(1.5)"><stop offset="0" stop-color="currentColor"/><stop offset=".3" stop-color="currentColor" stop-opacity=".9"/><stop offset=".6" stop-color="currentColor" stop-opacity=".6"/><stop offset=".8" stop-color="currentColor" stop-opacity=".3"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></radialGradient><circle transform-origin="center" fill="none" stroke="url(#a)" stroke-width="15" stroke-linecap="round" stroke-dasharray="200 1000" cx="100" cy="100" r="70"><animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"/></circle><circle transform-origin="center" fill="none" opacity=".2" stroke="currentColor" stroke-width="15" stroke-linecap="round" cx="100" cy="100" r="70"/></svg>`,
   info: `<svg width="40" height="40" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896zm0 192a58.432 58.432 0 0 0-58.24 63.744l23.36 256.384a35.072 35.072 0 0 0 69.76 0l23.296-256.384A58.432 58.432 0 0 0 512 256zm0 512a51.2 51.2 0 1 0 0-102.4 51.2 51.2 0 0 0 0 102.4z"/></svg>`,
   error: `<svg width="40" height="40" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 42.667c117.803 0 213.333 95.53 213.333 213.333S373.803 469.333 256 469.333 42.667 373.803 42.667 256 138.197 42.667 256 42.667Zm48.917 134.25L256 225.835l-48.917-48.918-30.166 30.166L225.835 256l-48.918 48.917 30.166 30.166L256 286.165l48.917 48.918 30.166-30.166L286.165 256l48.918-48.917-30.166-30.166Z" fill-rule="evenodd"/></svg>`,
@@ -35,7 +35,7 @@ const $$ = e => document.querySelectorAll(e)
  * */
 const $create = e => document.createElement(e)
 
-class Bell {
+export default class Bell {
   $bellContainer;
   $bellNums;
   $bellParent;
@@ -190,7 +190,7 @@ class Bell {
   }
 
 
-  setPositions($bellNums) {
+  setPositions($bellNums, isRemove) {
     const {length} = $bellNums
     const $bells = [...$bellNums].reverse()
     const firstBell = $bells[0]
