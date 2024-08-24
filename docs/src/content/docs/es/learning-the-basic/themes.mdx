@@ -1,0 +1,220 @@
+---
+title: Usa los temas
+description: Belljs tiene diferentes temas que cambian el como se muestran las alertas dandole tonos diferentes.
+---
+
+import {Aside,Tabs,TabItem} from '@astrojs/starlight/components'
+import Touches from '../../../../components/TouchesPlay.astro'
+
+Los temas son una de las cosas primordiales en **BellJs** ya que brindan la oportunidad de elegir entre diferentes diseños y asi encontrar el que mas se adapte a tu sistema. O si no crear el tuyo propio.
+
+<div class="galery">
+	<picture>
+		<span>Chackra</span>
+		<img src="/chackra.png" alt="Tema Chackra en la alerta BellJs"></img>
+	</picture>
+	<picture>
+		<span>Colors</span>
+		<img src="/colors.png" alt="Tema Colors en la alerta BellJs"></img>
+	</picture>
+	<picture>
+		<span>Gradient</span>
+		<img src="/gradient.png" alt="Tema Gradient en la alerta BellJs"></img>
+	</picture>
+	<picture>
+		<span>Light</span>
+		<img src="/light.png" alt="Tema light en la alerta BellJs"></img>
+	</picture>
+</div>
+
+## Usar un tema
+
+**BellJs** no carga los temas extras por defecto para mejorar el rendimiento. Si quieres probar todos los temas es tan facil como import el CSS `allThemes.css` o si quieres importar solo el que vayas a usar `light.css`.
+
+<Tabs>
+<TabItem label="Con bundler">
+```js
+	import 'bell-alert/dist/themes/light.css'
+```
+</TabItem>
+<TabItem label="Con jsDelivr">
+```js
+	<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/themes/light.css"/>
+```
+</TabItem>
+<TabItem label="Con unpkg">
+```js
+	<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/themes/light.css"/>
+```
+</TabItem>
+</Tabs>
+
+Para usar un tema es tan facil como seleccionarlo. Para ello debemos modificar la propiedad `theme` del tercer parametro de **Bell**. Aqui un ejemplo:
+
+```js
+new Bell({
+	title: "Usando el tema light"
+},"info",{
+	theme: "light"
+}).launch()
+```
+
+<Touches slug="es-theme"/>
+
+Con esto hecho todos los tipos de alertas cambiaran de diseño.
+
+<Aside type="note">
+Por defecto **Bell** trae el tema `default`
+</Aside>
+
+## Crear un tema
+
+La creacion de temas es una forma eficiente de personalizar nuestras alertas sin necesidad de ir cambiando cada una ellas. Pero primero que nada debemos saber como trabajan estos temas.
+
+- Variables CSS de BellJs.
+- Nombre del tema y nombres rentringidos.
+- Uso del nuevo temas.
+
+### Las variables CSS de BellJs
+
+Los temas y la mayoria de todo **BellJs** trabaja con variables para mejorar el entorno de desarrollo tanto para el equipo como para los usuarios que usan o modificar la libreria. Estas son las variables que usa **BellJs**:
+
+|Nombre de la variable|Uso|Ejemplo
+|---|---|---|
+|`--b_t`|Define el color del titulo|`--b_t: white;`|
+|`--b_d`|Define el color de la descripcion|`--b_d: black;`|
+|`--b_bg`|Define el color de fondo la alerta|`--b_bg: red;`|
+|`--b_svg`|Define el color de los iconos|`--b_svg: blue;`|
+|`--b_br`|Define el color del border|`--b_br: gray;`|
+|`--b_t`|Define el color del titulo|`--b_t: white;`|
+|`--b_tm`|Define el tiempo de animacion de la linea de tiempo|`--b_tm: 5000ms;`|
+|`--b_h`|Define lo alto de la alerta|`--b_h: 40px;`|
+|`--b_w`|Define lo ancho de la alerta|`--b_w: 120px;`|
+
+Con esto en mente podemos empezemos a modificar las variables para que crear nuestro propio tema, recuerda que debemos modificar cada uno de los tipos posibles como `info`, `error` u otros:
+
+```css
+/* Theme Nuevo */
+
+.b_c.info {
+  --b_svg: rgb(14 105 190);
+  --b_t: rgb(20 114 202);
+  --b_d: rgb(24 96 139 / 0.8);
+  --b_bg: rgb(245 252 255);
+  --b_br: rgba(8, 145, 199, 0.35);
+}
+
+.b_c.warning {
+  --b_svg: rgb(197 82 10);
+  --b_t: rgb(160 62 0);
+  --b_d: rgba(139, 85, 24, 0.8);
+  --b_bg: rgb(255 248 235);
+  --b_br: rgba(199, 84, 8, 0.3);
+}
+
+.b_c.error {
+  --b_svg: rgb(199, 8, 8);
+  --b_t: rgb(181, 5, 5, 0.9);
+  --b_d: rgba(139, 24, 24, 0.8);
+  --b_bg: rgb(255 245 245);
+  --b_br: rgba(199, 8, 8, 0.3);
+}
+
+.b_c.success {
+  --b_svg: rgb(37 169 44);
+  --b_t: rgb(33 117 26);
+  --b_d: rgb(51 117 38 / .8);
+  --b_bg: rgb(246, 255, 250);
+  --b_br: rgb(53 137 0 / .35);
+}
+.dark .b_c.info {
+  --b_svg: rgb(47 130 206);
+  --b_t: rgb(64 143 217);
+  --b_d: rgb(113 191 238 / 80%);
+  --b_bg: rgb(36 38 39);
+  --b_br: rgb(32 77 95 / 35%);
+}
+
+.dark .b_c.warning {
+  --b_svg: rgb(212 104 36);
+  --b_t: rgb(185 100 46);
+  --b_d: rgb(220 150 72 / 80%);
+  --b_bg: rgb(41 40 36);
+  --b_br: rgb(133 100 9 / 30%);
+}
+
+.dark .b_c.error {
+  --b_svg: rgb(208 59 59);
+  --b_t: rgb(222 72 72 / 90%);
+  --b_d: rgb(225 94 94 / 80%);
+  --b_bg: rgb(41 37 37);
+  --b_br: rgb(143 47 47 / 30%);
+}
+
+.dark .b_c.success {
+  --b_svg: rgb(57 206 65);
+  --b_t: rgb(85 185 76);
+  --b_d: rgb(137 235 118 / 80%);
+  --b_bg: rgb(44 47 45);
+  --b_br: rgb(53 137 0 / 18%);
+}
+
+```
+
+Guarda el archivo CSS con el nombre de este nuevo tema.
+
+### Nombre del tema y nombres restringidos.
+
+Lo siguiente sera darle un nombre a nuestro tema, aunque no debes usar nombres restringidos de **BellJs** para no generar problemas, algunos de ellos son:
+
+|Nombre restringido|Uso|
+|---|---|
+|`.b_c`|Clase CSS del contenedor de la alerta|
+|`.b_p`|Clase CSS del padre del contenedor de la alerta|
+|`.b_close`|Clase CSS del boton removedor|
+|`.b_i`|Clase CSS de los iconos o svg|
+|`.b_t-c`|Clase CSS del contenedor de los textos|
+|`.b_t`|Clase CSS de los titulos|
+|`.b_d`|Clase CSS de las descripciones|
+|`.b_t_p`|Clase CSS de los titulos de las promesas|
+|`@keyframes b_a-timeline`|Nombre de la animacion de la linea de tiempo|
+|`@keyframes b_a-svg`|Nombre de la animacion de los iconos de las promesas|
+
+Tampoco debemos usar como nombre de tema el nombre de un tema ya existente. Ejemplo: `colors` 
+
+```js
+const tema = "nuevoTema"
+```
+
+### Usar tema creado
+
+Ahora con todo ya creado podemos usar el tema creado, recuerda haber importado el **CSS** del nuevo tema.
+
+<Tabs>
+<TabItem label="Con bundler">
+```js
+import 'nuevoTema.css';
+
+new Bell({
+	title: "Usando un nuevo tema"
+},"info",{
+	theme: tema
+}).launch()
+```
+</TabItem>
+<TabItem label="sin bundler">
+```html
+<link type="stylesheet" rel="./nuevoTema.css"/>
+```
+
+```js
+new Bell({
+	title: "Usando un nuevo tema"
+},"info",{
+	theme: tema
+}).launch()
+```
+</TabItem>
+</Tabs>
+
+Listo con esto ya deberias ver tu nuevo tema creado. Si crees que tu tema le puede ayudar o gustar a otras personas pues que esperas para enviar una **PR** a el [repo de BellJs](https://https://github.com/Dsgnr-JM/bell) comparte ahora tus creaciones.

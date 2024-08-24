@@ -1,0 +1,132 @@
+---
+title: Customizing Bell
+description: The third parameter is the most customizable since it is a set of instructions for bell.
+---
+
+import Touches from '../../../components/TouchesPlay.astro'
+
+The third parameter is an `Object` with different types of properties from the time at which the alert will be displayed on the screen, to customizable `HTML`.
+
+## Changing animations and time
+
+Animations and time are crucial stages in UX/UI and **BellJs** knows this, that's why we created the `screenTime`, `animate`, `expand`, `timeline`, `transitionDuration` and `typeAnimation` properties, let's see each one of them.
+
+### Using animations
+
+To change the animations of `Bell` it is as easy as changing the `typeAnimation` property in the third parameter, there are different options in this case we will use the more animated `bound-2` that animates a bounce in the alert.
+
+```js
+new Bell({
+title: "Bounce Alert"
+},"info",{
+typeAnimation: "bound-2"
+}).launch()
+```
+<Touches slug="en-customized-bell-anim"/>
+
+This generates the animation in the alert, of course if they are not deactivated by the `animate` parameter.
+
+### Modifying the screen time
+
+To change the screen time of the alerts you only have to modify the `screenTime` property, it receives a `Number` value that defaults to 3000, which is equal to 3 seconds.
+
+```js
+new Bell({
+title: "Alert with 5 seconds on screen"
+},"info",{
+screenTime: 5000
+}).launch()
+```
+
+<Touches slug="en-customized-bell-time"/>
+
+With this you can now modify the screen time that your alerts have, be careful the `transitionDuration` that you use will be added to the `screenTime` this means:
+
+```js
+new Bell({
+title: "Alert with 5 seconds on screen"
+},"info",{
+screenTime: 5000,
+transitionDuration: 400
+}).launch()
+
+// Screen time will be equal to 5400
+```
+
+<Touches slug="en-customized-bell-time-2"/>
+
+Finally we add a timeline to see how much time the alert has left before disappearing:
+
+```js
+new Bell({
+title: "Alert with 5 seconds on screen"
+},"info",{
+timeline:true,
+screenTime: 5000,
+transitionDuration: 400
+}).launch()
+```
+<Touches slug="en-customized-bell-time-3"/>
+
+### Expand mode or not?
+
+By default the `expand` mode is disabled in `Bell`, although it can be enabled by changing this property to `true`:
+
+```js
+new Bell({
+title: "With expand"
+},"info",{
+expand: true
+}).launch()
+```
+
+<Touches slug="en-customized-expand"/>
+
+You can use this if you want an effect similar to the **Toastify** library.
+
+## Different positions.
+
+With **BellJs** you can use different positions at the same time without generating errors. At the moment `Bell` has 6 different positions
+
+- `bottom-right`: Shows an alert below and to the right
+- `bottom-left`: Shows an alert below and to the right
+- `bottom-center`: Shows an alert below and to the center
+- `top-right`: Shows an alert above and to the right
+- `top-left`: Shows an alert above and to the right
+- `top-center`: Shows an alert above and to the center
+
+The code would be the following:
+
+```js
+new Bell({
+title: "Bottom right"
+},"info",{
+position: "bottom-right"
+}).launch()
+
+new Bell({
+title: "Top left"
+},"info",{
+position: "top-left"
+}).launch()
+```
+
+<Touches slug="en-customized-position"/>
+<Touches slug="en-customized-position-2"/>
+
+If you want to modify the positions a little more you can use `distance` that modifies the `x` or `y` axis. Depending on whether you are using the `right`, `left`, `top` or `bottom` positions. Let's see a clear example:
+```js
+new Bell({
+title: "Bottom right"
+},"info",{
+position: "bottom-right",
+distance: {
+x: 0,
+y: 0
+}
+}).launch()
+```
+
+<Touches slug="en-customized-position-3"/>
+
+With this the alert will be displayed at the bottom right, with `0` pixels of distance from the screen.

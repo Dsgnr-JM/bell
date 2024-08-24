@@ -1,0 +1,77 @@
+---
+title: Referencias Avanzadas
+description: Inicia en BellJs de manera rapida usando el paquete desde cualquier via.
+---
+
+import {Tabs,TabItem,Aside} from '@astrojs/starlight/components'
+
+Si llegaste hasta aqui es por que quieres personalizar aun mas a **BellJs** o almenos saber como funciona, bueno esta es la guia completa de todos los campos de la libreria espero te sean de utilidad.
+
+## Parametros de la instancia
+
+Veamos primero los parametros necesarios para crear una alerta usando **BellJs**.
+
+### Primer parametro (textos)
+
+El primer parametro es un `Object` que coloca los textos en la alerta y cuenta con las siguientes propiedades:
+
+|Nombre de la propiedad|Descripcion|Valor|
+|---|---|---|
+|`title`|Texto primario o titulo de la alerta|`String`|
+|`description`|Texto segundario o descripcion de la alerta|`String`|
+
+### Segundo parametro (tipos)
+
+El segundo parametro es un `String` que define el tipo de alerta:
+
+El segundo parametro es un `String` que indicar el tipo de alerta, el mismo se rije con estos posibles valores:
+
+|Tipo|Descripcion|
+|---|---|
+|`info`|Muestra un estilo de informacion en la alerta|
+|`warning`|Muestra un estilo de peligro en la alerta|
+|`error`|Muestra un estilo de error en la alerta|
+|`success`|Muestra un que algo salio bien en la alerta|
+|`promise`|Muestra un estilo de carga en la alerta|
+|`none`|No muestra estilos pero tampoco iconos|
+
+### Tercer parametro (personalizacion)
+
+El tercer parametro es un `Object` que sirve como parametro de configuracion:
+
+|Nombre de la propiedad|Descripcion|Valor|
+|---|---|---|
+|`animate`|Define si la alerta tendra animaciones, por defecto `true`|`Boolean`|
+|`isColored`|Define si la alerta tendra coloreado, por defecto `true`|`Boolean`|
+|`transitionDuration`|Define el tiempo de las transiciones|`Number`|
+|`position`|Define la posicion, por defecto `bottom-right`|`bottom-left` - `bottom-left` - `bottom-right` - `top-left` - `top-left` - `top-right`|
+|`typeAnimation`|Tipo de animacion de la alerta|`fade-in` - `fade-in-out` - `bound` - `bound-2`|
+|`screenTime`|Tiempo en pantalla de la alerta|`Number`|
+|`expand`|Efecto de expand por defecto `false|`Boolean`|
+|`theme`|Tema para la alerta por defecto `default`|`colors`- `light` - `String`|
+|`customClass`|Coloca una clase CSS a la alerta|`String`|
+|`customStyles`|Coloca estilos a la alerta|`Object`|
+|`customStyles.container *`|Coloca estilos al contenedor de la alerta (cualquier propiedad css)|`Object`|
+|`customStyles.title *`|Coloca estilos al titulo de la alerta (cualquier propiedad css)|`Object`|
+|`customStyles.description *`|Coloca estilos a la descripcion de la alerta (cualquier propiedad css)|`Object`|
+|`customStyles.icon *`|Coloca estilos al icono de la alerta (cualquier propiedad css)|`Object`|
+|`customIcon`|Cambia el icono de la alerta|`Svg`|
+|`customHTML`|Cambia el html de la alerta|`HTML`|
+|`distance`|Distancia de las alertas relativo a la pantalla por defecto a la pantalla por defecto `30`|`Object`|
+|`distance.x`|Distancia en el eje `x` dependiendo de la posicion escojida si `right` o `left`|`Number`|
+|`distance.y`|Distancia en el eje `y` dependiendo de la posicion escojida si `top` o `bottom`|`Number`|
+|`gap`|Espaciado entre alertas por defecto `15`|`Number`|
+|`timeline`|Coloca una linea de tiempo para la alerta|`Boolean`|
+|`removeOn`|Define la forma de remover la alerta|`button` - `click`|
+
+### Metodos de Bell
+
+Diferentes metodos de la instancia:
+
+|Nombre del metodo|Descripcion|Parametros|
+|---|---|---|
+|`new Bell()`|Crea una instancia de `Bell`|(`Object`,`String`,`Object`)|
+|`launch()` |Lanza la alerta y la muestra en pantalla|`none`|
+|`dismiss()`|Remueve la alerta|`none`|
+|`promise()`|Usa una promesa|(`Promise`,`State`)|
+

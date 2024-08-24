@@ -1,0 +1,41 @@
+---
+title: Cambiando los textos 
+description: Informacion sobre los primeros parametros de BellJs los cuales son el titulo y subtitulo.
+---
+
+import Touches from '../../../../components/TouchesPlay.astro'
+
+Recuerdas que **BellJs** acepta tres parametros, pues bueno el primero de ellos  es un `Object` con las propiedades `title` y `description`.
+
+- **`title`**: Este parametro configura el texto del titulo de la alerta.
+- **`description`**: Este parametro configura el texto del parrafo de la alerta.
+
+Puedes usar los dos o solo uno, veamos un ejemplo:
+
+### Solo el titulo
+
+Para hacer una alerta con solo el titulo deberas crear una instancia de `Bell`y pasar como primer parametro un objeto con solo el titulo.
+
+```js
+new Bell({
+	title: "Solo con titulo"
+}).launch()
+```
+
+Esto mostrara en pantalla una alerta con solo el titulo.
+
+<Touches slug="es-change-text"/>
+
+### Solo la descripcion
+
+En este caso en vez de mandar el titulo, enviaremos solo la descripcion, esto en el primer objeto.
+
+```js
+new Bell({
+	description: "Solo con descripcion"
+}).launch()
+```
+
+<Touches slug="es-change-text-description"/>
+
+Recuerda siempre enviar aunque sea una de las propiedades.

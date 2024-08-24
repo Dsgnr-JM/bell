@@ -1,0 +1,310 @@
+---
+
+const {slug,isPromise} = Astro.props
+
+---
+
+<div>
+	<button data-action={slug} data-promise={isPromise} id="btnShow">
+		Mostrar alerta
+	</button>
+</div>
+<script>
+	import Bell from '../lib/index.js'
+	import '../lib/bell.css'
+	import '../lib/themes/allThemes.css'
+	const lang = window.location.pathname.split("/")[1] == "es" ? "es" : "en"
+	function removeAlert(bell){
+	bell.dismiss()
+	}
+	const newHTML = {en:`
+	<div class="c_alert">
+	<h2>Do you want to complete the action?</h2>
+	<p>The user will be removed from the registry</p>
+	<div>
+	<button>Cancel</button>
+	<button id="button">Delete</button>
+	</div>
+	</div>`,
+	es:`
+	<div class="c_alert">
+	<h2>Quieres completar la accion?</h2>
+	<p>El usuario sera eliminado del registro</p>
+	<div>
+	<button>Cancelar</button>
+	<button id="button">Borrar</button>
+	</div>
+	</div>
+	`
+	}
+	
+	const icon = `﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="none" stroke="#2486ca" stroke-width=".5" cx="100" cy="100" r="0"><animate attributeName="r" calcMode="spline" dur="2" values="1;80" keyTimes="0;1" keySplines="0 .2 .5 1" repeatCount="indefinite"/><animate attributeName="stroke-width" calcMode="spline" dur="2" values="0;25" keyTimes="0;1" keySplines="0 .2 .5 1" repeatCount="indefinite"/><animate attributeName="stroke-opacity" calcMode="spline" dur="2" values="1;0" keyTimes="0;1" keySplines="0 .2 .5 1" repeatCount="indefinite"/></circle></svg>`
+	
+	const actions = {
+		'en-started': [{
+			title: "New alert",
+			description: "BellJs is amazing and light"
+			},"info"],
+		'en-change-text': [{
+			title: "Only with title"}],
+		'en-change-text-description': [{
+			description: "Only with description"}],
+		'en-choosing-the-type-of-alert': [{
+			title: "A serious error occurred",
+			},"error"],
+		'en-customized-bell-anim': [{
+			title: "Bounce Alert"
+			},"info",{
+			typeAnimation: "bound-2"}],
+		'en-customized-bell-time': [{
+			title: "Alert with 5 seconds on screen"
+			},"info",{
+			screenTime: 5000
+			}],
+		'en-customized-bell-time-2': [{
+			title: "Alert with 5 seconds on screen"
+			},"info",{
+			screenTime: 5000,
+			transitionDuration: 400
+			}],
+		'en-customized-bell-time-3':[{
+			title: "Alert with 5 seconds on screen"
+			},"info",{
+			timeline:true,
+			screenTime: 5000,
+			transitionDuration: 400
+			}],
+		'en-customized-expand':[{
+			title: "With expand"
+			},"info",{
+			expand: true
+			}],
+		'en-customized-position':[{
+			title: "Bottom right"
+			},"info",{
+			position: "bottom-right"
+			}],
+		'en-customized-position-2':[{
+			title: "Top left"
+			},"info",{
+			position: "top-left"
+			}],
+		'en-customized-position-3':[{
+			title: "Bottom right"
+			},"info",{
+			position: "bottom-right",
+			distance: {
+			x: 0,
+			y: 0
+			}
+			}],
+		'en-removal':[{
+			description: "Removing the alert with a button"
+			},"info",{
+			removeOn:"button",
+			screenTime: "10000"
+			}],
+		'en-modified':[{
+			title: "Bell Title",
+			description: "Bell Description"
+			},"info",{
+				customStyles:{
+					description: {
+						color: "green",
+						"font-size": "1rem"
+					},
+					icon: {
+						color: "red"
+					}
+				}
+			}],
+		'en-modified-icon':[{
+			title: "Changing info icon",
+			},"info",{
+			customIcon: icon
+			}],
+		'en-modified-html':[{
+			title:"Placeholder"
+			},
+			"none",{
+			typeAnimation: "bound-2",
+			customHTML: newHTML.en,
+			removeOn: "button",
+			screenTime: 1000000
+			}],
+		'en-promises':[{
+			title: "Placeholder"
+			},"promise"],
+		'en-theme':[{
+			title: "Using the light theme"
+			},"info",{
+			screenTime: 5000,
+			theme: "light"}],
+		'es-started': [{
+			title: "Nueva alerta",
+			description: "BellJs es increible y ligera"
+			},"info"],
+		'es-change-text': [{
+			title: "Solo con titulo"}],
+		'es-change-text-description': [{
+			description: "Solo con descripcion"}],
+		'es-choosing-the-type-of-alert': [{
+			title: "A ocurrido un error",
+			},"error"],
+		'es-customized-bell-anim': [{
+			title: "Alerta con rebote"
+			},"info",{
+			typeAnimation: "bound-2"}],
+		'es-customized-bell-time': [{
+			title: "Alerta con 5 segundos en pantalla"
+			},"info",{
+			screenTime: 5000
+			}],
+		'es-customized-bell-time-2': [{
+			title: "Alerta con 5 segundos en pantalla"
+			},"info",{
+			screenTime: 5000,
+			transitionDuration: 400
+			}],
+		'es-customized-bell-time-3':[{
+			title: "Alerta con 5 segundos en pantalla"
+			},"info",{
+			timeline:true,
+			screenTime: 5000,
+			transitionDuration: 400
+			}],
+		'es-customized-expand':[{
+			title: "Con expandir"
+			},"info",{
+			expand: true
+			}],
+		'es-customized-position':[{
+			title: "Abajo a la derecha"
+			},"info",{
+			position: "bottom-right"
+			}],
+		'es-customized-position-2':[{
+			title: "Arriba a la izquierda"
+			},"info",{
+			position: "top-left"
+			}],
+		'es-customized-position-3':[{
+			title: "Abajo a la derecha"
+			},"info",{
+			position: "bottom-right",
+			distance: {
+			x: 0,
+			y: 0
+			}
+			}],
+		'es-removal':[{
+			description: "Removiendo la alerta con un boton"
+			},"info",{
+			removeOn:"button",
+			screenTime: "10000"
+			}],
+		'es-modified':[{
+			title: "Titulo de Bell",
+			description: "Descripcion de Bell"
+			},"info",{
+				customStyles:{
+					description: {
+						color: "green",
+						"font-size": "1rem"
+					},
+					icon: {
+						color: "red"
+					}
+				}
+			}],
+		'es-modified-icon':[{
+			title: "Cambiando el icono de informacion",
+			},"info",{
+			customIcon: icon
+			}],
+		'es-modified-html':[{
+			title:"Marcador de posicion"
+			},
+			"none",{
+			typeAnimation: "bound-2",
+			customHTML: newHTML.es,
+			removeOn: "button",
+			timeScreen: 10000
+			}],
+		'es-theme':[{
+			title: "Usando el tema light"
+			},"info",{
+			screenTime: 5000,
+			theme: "light"}],
+		'es-promises':[{
+			title: "Marcador de posicion"
+			},"promise"]
+		}
+	
+	document.querySelectorAll("#btnShow").forEach(btn => {
+		btn.addEventListener("click",()=>{
+		const action = actions[btn.dataset.action]
+		const bell = new Bell(...action)
+		const promise = new Promise((resolve,reject) =>{
+		setTimeout(()=>{
+		Math.round(Math.random()) ? resolve() : reject() 
+		},5000)
+		})
+		const stateLangs = {es:{
+		pending:"Promesa pendiente",
+		success:"Promesa resuelta",
+		error:"Promesa erronea"
+		},en:{
+		pending:"Pending promise",
+		success:"Resolved promise",
+		error:"Bad promise"
+		}}
+		const state = stateLangs[lang]
+		if(btn.dataset.promise){
+			bell.promise(promise, state)
+		}else{
+			bell.launch()
+		}
+		
+		if(document.getElementById("button"))document.getElementById("button").addEventListener("click",()=>removeAlert(bell))
+	})
+	})
+</script>
+<style is:global>
+.c_alert{
+width: 100%;
+line-height:1.5;
+}
+.c_alert h2{
+font-size: .93rem;
+font-weight: 600;
+} .c_alert p{ font-size: .92rem;
+ opacity: .8;
+} .c_alert > div{ display: flex;
+ justify-content: start;
+ width: 100%;
+ gap:4px;
+ margin-top: 9px;
+} .c_alert > div button{ cursor:pointer;
+ border:none;
+ padding: 4px 8px;
+ background: var(--b_t);
+ color: var(--b_bg);
+ font-size: .9rem;
+ border-radius: 5px;
+} .c_alert > div button:first-child{ background: transparent;
+ color: var(--b_t);
+}
+</style>
+<style>
+	div{
+		border: 1px solid color-mix(in srgb, var(--sl-color-gray-5), transparent 25%);
+		height:200px;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+	}
+	button{
+		cursor:pointer;
+	}
+</style>
