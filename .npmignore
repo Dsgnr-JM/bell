@@ -1,1 +1,6 @@
 test/
+src/
+bell.css
+gulpfile.js
+index.js
+node_modules
