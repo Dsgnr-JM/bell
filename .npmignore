@@ -10,6 +10,7 @@ node_modules
 docs
 test
 src
+banner.svg
 bell.css
 gulpfile.js
 index.js
