@@ -1,12 +1,12 @@
----
-title: Getting started
-description: Get started with BellJs quickly using the package from any source.
----
+<div align="center">
+  <img src="https://github.com/Dsgnr-JM/bell/raw/master/logo.png" alt="Logo" height="105">
+</div>
 
-import {Tabs,TabItem,Aside} from '@astrojs/starlight/components'
-import Touches from '../../../components/TouchesPlay.astro'
+<div align="center">
+  <h1>BellJs, the sound of a good notifications.</h1>
+</div>
 
-BellJs is a lightweight, modern, customizable alert library built in vanilla JavaScript making it agnostic. This guide will help you get started with it in an easy way. Check out the [full api](../../api) for all the information..
+[BellJs](https://belljs.vercel.app) is a lightweight, modern, customizable alert library built in vanilla JavaScript making it agnostic. This guide will help you get started with it in an easy way. Check out the [full api](https://belljs.vercel.app/api) for all the information..
 
 ## Quick Start
 
@@ -15,7 +15,11 @@ BellJs is a lightweight, modern, customizable alert library built in vanilla Jav
 To use BellJs in your web project you just need to run the following command inside your project.
 
 ```bash
+# npm
 npm i bell-alert
+
+# pnpm
+pnpm add bell-alert
 ```
 
 ### Using the official cdn
