@@ -1,0 +1,402 @@
+/*
+ |--------------------------------------------------------------------------
+ | Bell.js es un proyecto OpenSource creado por JotaDev, para crear de manera 
+ | rapida alertas parecidas a Sonner en cualquier proyectos vanilla y sin  
+ | necesidad de React.
+ | Sitio Web de bell: https://belljs.github.io
+ | Sito Web del Creador: https://jotadev0.vercel.app
+ |--------------------------------------------------------------------------
+ |
+ | Bell.js necesita este archivo Css para mostrarse al usuario correctamente,
+ | recuerda este proyecto no necesita dependencias adicionales a bell.js.
+ |
+ */
+/* Customs Properties para el bell */
+
+:root {
+  --b_t: rgb(2 2 2);
+  --b_d: rgba(10, 10, 10, 0.8);
+  --b_bg: rgba(255, 255, 255, 1);
+  --b_svg: rgb(10 10 10 / 0.9);
+  --b_br: rgba(100, 100, 100, 0.25);
+  --t_an: 5000ms;
+  --b_h: 0;
+  --b_w: 350px;
+  --b_x: 30px;
+}
+
+html.dark {
+  --b_t: rgba(10, 10, 10, 0.7);
+  --b_d: rgba(100, 100, 100, 0.65);
+  --b_bg: rgba(255, 255, 255, 1);
+  --b_br: rgba(0, 0, 0, 0.05);
+}
+.b_p,.b_c,.b_p *,.b_c *{
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
+}
+
+/* Parent of bell */
+
+.b_p {
+  z-index: 10;
+  position: fixed;
+  padding: 10px;
+  --height-parent: 0px;
+  width: var(--b_w);
+  height: 0;
+}
+
+.b_p:hover {
+  height: var(--height-parent);
+}
+
+/* Contenerdor del bell */
+
+.b_c {
+  cursor: pointer;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 17px;
+  width: var(--b_w);
+  overflow: hidden;
+  height: fit-content;
+  border: 1px ridge var(--b_br);
+  border-radius: 7px;
+  background-color: var(--b_bg);
+  position: fixed;
+  z-index: 100;
+  opacity: 0;
+  transition: 0.15s all;
+  box-shadow: 0 3px 10px rgb(10 10 10 /.07);
+}
+
+.b_c.timeline::before {
+  transition: .15s ease width;
+  opacity: 1;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  content: "";
+  height: 2px;
+  background: var(--b_svg, #111);
+  width: 100%;
+}
+
+.b_c.timeline.init_count::before {
+  animation: timeline var(--t_an) ease forwards;
+  animation-duration: var(--t_an);
+}
+
+.b_c.active:nth-last-child(n + 4),
+.b_c.pending.timeline::before,
+.b_c:nth-last-child(2)>div,
+.b_c:nth-last-child(3)>div,
+.b_c:nth-last-child(2)>span,
+.b_c:nth-last-child(3)>span,
+.b_c:nth-last-child(2)>.b_close,
+.b_c:nth-last-child(3)>.b_close {
+  opacity: 0;
+  transition: 0.2s ease-in;
+}
+
+.b_close {
+  background:none;
+  cursor:pointer;
+  border:none;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+
+.b_close svg {
+  width: 15px;
+  height: 15px;
+  fill: var(--b_t);
+  opacity: 0.8;
+}
+
+.b_p:hover .b_c:nth-last-child(2)>div,
+.b_p:hover .b_c:nth-last-child(3)>div,
+.b_p:hover .b_c:nth-last-child(2)>span,
+.b_p:hover .b_c:nth-last-child(3)>span,
+.b_p:hover .b_c:nth-last-child(2) .b_close,
+.b_p:hover .b_c:nth-last-child(3) .b_close,
+.b_p.expand .b_c:nth-last-child(2)>div,
+.b_p.expand .b_c:nth-last-child(3)>div,
+.b_p.expand .b_c:nth-last-child(2)>span,
+.b_p.expand .b_c:nth-last-child(3)>span,
+.b_p.expand .b_c:nth-last-child(2) .b_close,
+.b_p.expand .b_c:nth-last-child(3) .b_close,
+.b_close:hover svg,
+.b_c.active {
+  opacity: 1;
+}
+
+.b_c.ease-in {
+  transition-timing-function: ease-in !important;
+}
+
+.b_c.ease-in-out {
+  transition-timing-function: ease-in-out !important;
+}
+
+.b_c.bound {
+  transition-timing-function: cubic-bezier(1, 0.08, 0, 0.96) !important;
+}
+
+.b_c.bound-2 {
+  transition-timing-function: cubic-bezier(0.55, -0.57, 0.55, 1.58) !important;
+}
+
+/* Componentes del bellAlert */
+
+.b_i {
+  position: relative;
+  height: 22px;
+  min-width: 22px;
+}
+
+.b_i svg {
+  color: var(--b_svg);
+  fill: currentColor;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.b_t-c {
+  position: relative;
+  flex: 1;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+}
+
+.b_t,
+.b_t_p {
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--b_t);
+}
+
+.b_d {
+  color: var(--b_d);
+  font-size: .91rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Posicionamiento del bell*/
+.b_c.bottom {
+  bottom: -70px;
+}
+
+.b_p.bottom {
+  bottom: var(--b_x);
+}
+
+.b_c.top {
+  top: -70px;
+}
+
+.b_p.top {
+  top: var(--b_x);
+}
+
+.b_c.left,
+.b_p.left {
+  left: var(--b_x);
+}
+
+.b_c.right,
+.b_p.right {
+  right: var(--b_x);
+}
+
+.b_c.center {
+  left: calc(50vw - calc(var(--b_w) / 2));
+}
+
+.b_p.center {
+  left: calc(50vw - calc(var(--b_w) / 2));
+}
+
+/* Transiciones para el bell */
+
+.b_c.active.bottom {
+  bottom: var(--b_x);
+  --top: 30px;
+}
+
+.b_c.active.top {
+  top: var(--b_x);
+  --top: 30px;
+}
+
+.b_p:hover .b_c.active,
+.b_p.expand .b_c.active {
+  opacity: 1;
+  height: var(--b_h) !important;
+  scale: 1 !important;
+}
+
+.b_p:hover .b_c.top.active,
+.b_p.expand .b_c.top.active {
+  top: var(--top) !important;
+}
+
+.b_p:hover .b_c.bottom.active,
+.b_p.expand .b_c.bottom.active {
+  bottom: var(--top) !important;
+}
+
+@keyframes timeline {
+  to {
+    width: 0%;
+  }
+
+  from {
+    width: 100%;
+  }
+}
+
+.b_c.pending .b_t-c .b_t,
+.b_c.pending .b_t-c .b_d,
+.b_c.pending .b_i>svg,
+.complete .b_t_p,
+.complete.promise svg {
+  opacity: 0;
+}
+
+.b_c.pending .b_i>svg {
+  scale: .8;
+}
+
+.b_t_p {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.promise {
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /*animation: 1s spin-svg infinite;*/
+}
+
+.b_t,
+.b_i svg {
+  transition: .3s cubic-bezier(0.25, 0.1, 1, 1.97) all;
+}
+
+.complete .b_i {
+  animation: animate-svg .3s backwards;
+}
+
+@keyframes animate-svg {
+  0% {
+    opacity: 0;
+    scale: .8;
+  }
+
+  70% {
+    opacity: 1;
+    scale: 1.1;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
+
+
+/* Temas */
+
+/* Theme Default */
+
+.b_c.info {
+  --b_svg: rgb(14 105 190);
+  --b_t: rgb(20 114 202);
+  --b_d: rgb(24 96 139 / 0.8);
+  --b_bg: rgb(245 252 255);
+  --b_br: rgba(8, 145, 199, 0.35);
+}
+
+.b_c.warning {
+  --b_svg: rgb(197 82 10);
+  --b_t: rgb(160 62 0);
+  --b_d: rgba(139, 85, 24, 0.8);
+  --b_bg: rgb(255 248 235);
+  --b_br: rgba(199, 84, 8, 0.3);
+}
+
+.b_c.error {
+  --b_svg: rgb(199, 8, 8);
+  --b_t: rgb(181, 5, 5, 0.9);
+  --b_d: rgba(139, 24, 24, 0.8);
+  --b_bg: rgb(255 245 245);
+  --b_br: rgba(199, 8, 8, 0.3);
+}
+
+.b_c.success {
+  --b_svg: rgb(37 169 44);
+  --b_t: rgb(33 117 26);
+  --b_d: rgb(51 117 38 / .8);
+  --b_bg: rgb(246, 255, 250);
+  --b_br: rgb(53 137 0 / .35);
+}
+.dark .b_c.info {
+  --b_svg: rgb(47 130 206);
+  --b_t: rgb(64 143 217);
+  --b_d: rgb(113 191 238 / 80%);
+  --b_bg: rgb(36 38 39);
+  --b_br: rgb(32 77 95 / 35%);
+}
+
+.dark .b_c.warning {
+  --b_svg: rgb(212 104 36);
+  --b_t: rgb(185 100 46);
+  --b_d: rgb(220 150 72 / 80%);
+  --b_bg: rgb(41 40 36);
+  --b_br: rgb(133 100 9 / 30%);
+}
+
+.dark .b_c.error {
+  --b_svg: rgb(208 59 59);
+  --b_t: rgb(222 72 72 / 90%);
+  --b_d: rgb(225 94 94 / 80%);
+  --b_bg: rgb(41 37 37);
+  --b_br: rgb(143 47 47 / 30%);
+}
+
+.dark .b_c.success {
+  --b_svg: rgb(57 206 65);
+  --b_t: rgb(85 185 76);
+  --b_d: rgb(137 235 118 / 80%);
+  --b_bg: rgb(44 47 45);
+  --b_br: rgb(53 137 0 / 18%);
+}
+
+.dark .b_c {
+  --b_bg: rgb(48 44 44);
+  --b_d: rgb(227 227 227);
+  --b_t: rgb(255 255 255);
+  --b_svg: rgb(255 255 255);
+}
+
+@media (max-width: 768px) {
+  .b_c,
+  .b_p {
+    left: calc(50vw - calc(var(--b_w) / 2));
+    ;
+  }
+}
