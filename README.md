@@ -29,15 +29,15 @@ You can also use a **jsDelivr** cdn or **unpkg** to import the library, as follo
 - **jsDelivr**:
 
 ```html
-<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.css"/>
-<script href="https://www.unpkg.com/bell-alert/dist/bell.js"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.css">
+<script src="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.js"></script>
 ```
 
 - **unpkg**:
 
 ```html
-<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.css"/>
-<script href="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.js"/>
+<link rel="stylesheet" href="https://www.unpkg.com/bell-alert/dist/bell.css">
+<script src="https://www.unpkg.com/bell-alert/dist/bell.js"></script>
 ```
 
 >These are the development versions so they are not minified, if you want to use a minified version put the `.min` before the file extension.
@@ -58,7 +58,7 @@ This will import the library into your project, so you can start using it.
 With the library already imported you can easily create and use alerts. You just need to create an instance of **Bell** and pass it the parameters.
 
 ```js
-const bell = new Bell(params)
+const bell = new Bell(...params)
 ```
 
 **BellJs** Accepts two required parameters and one optional one, the first is an object with the **title** (it's the title) and the **description** (it's the description), the second is a `string` with the alert type and finally an object with different parameters, you can see them all in the [full api](https://belljs.vercel.app/api/references).

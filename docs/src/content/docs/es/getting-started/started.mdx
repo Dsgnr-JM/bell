@@ -37,16 +37,16 @@ yarn i bell-alert
 Tambien puedes usar una cdn de **jsDelivr** o **unpkg** para importar la libreria, de la siguiente manera.
 
 <Tabs>
-<TabItem label="jsDelivr">
+<TabItem label="unpkg">
 ```html
-<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.css"/>
-<script href="https://www.unpkg.com/bell-alert/dist/bell.js"/>
+<link rel="stylesheet" href="https://www.unpkg.com/bell-alert/dist/bell.css">
+<script src="https://www.unpkg.com/bell-alert/dist/bell.js"></script>
 ```
 </TabItem>
-<TabItem label="Unpkg">
+<TabItem label="jsDelivr">
 ```html
-<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.css"/>
-<script href="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.js"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.css">
+<script src="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.js"></script>
 ```
 </TabItem>
 </Tabs>
@@ -72,7 +72,7 @@ Esto importara la libreria en tu proyecto, con esto ya puedes empezar a usarla.
 Con la libreria ya importada puedes crear y usar las alertas de manera sencilla. Solo debes crear una instancia de **Bell** y pasarle los parametros.
 
 ```js
-const bell = new Bell(params)
+const bell = new Bell(...params)
 ```
 
 **BellJs** Acepta dos parametros necesarios y uno opcional, el primero es un objeto con el **title** (es el titulo) y el **description** (es la descripcion), el segundo es un `string` con el tipo de alerta y por ultimo un objeto con diferentes parametros, puedes verlos todos en la [api completa](../../es/api).
