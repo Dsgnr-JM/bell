@@ -11,7 +11,5 @@ docs
 test
 src
 banner.svg
-bell.css
 gulpfile.js
-index.js
 pnpm-lock.yaml

@@ -10,9 +10,9 @@ const {slug,isPromise} = Astro.props
 	</button>
 </div>
 <script>
-	import Bell from '../lib/index.js'
-	import '../lib/bell.css'
-	import '../lib/themes/allThemes.css'
+	import Bell from 'bell-alert'
+	import 'bell-alert/dist/bell.css'
+	import 'bell-alert/dist/allThemes.css'
 	const lang = window.location.pathname.split("/")[1] == "es" ? "es" : "en"
 	function removeAlert(bell){
 	bell.dismiss()
