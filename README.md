@@ -6,7 +6,7 @@
   <h1>BellJs, the sound of a good notifications.</h1>
 </div>
 
-[BellJs](https://belljs.vercel.app) is a lightweight, modern, customizable alert library built in vanilla JavaScript making it agnostic. This guide will help you get started with it in an easy way. Check out the [full api](https://belljs.vercel.app/api) for all the information..
+[BellJs](https://belljs.vercel.app) is a lightweight, modern, customizable alert library built in vanilla JavaScript making it agnostic. This guide will help you get started with it in an easy way. Check out the [full api](https://belljs.vercel.app/api/references) for all the information..
 
 ## Quick Start
 
@@ -61,7 +61,7 @@ With the library already imported you can easily create and use alerts. You just
 const bell = new Bell(params)
 ```
 
-**BellJs** Accepts two required parameters and one optional one, the first is an object with the **title** (it's the title) and the **description** (it's the description), the second is a `string` with the alert type and finally an object with different parameters, you can see them all in the [full api](https://belljs.vercel.app/api).
+**BellJs** Accepts two required parameters and one optional one, the first is an object with the **title** (it's the title) and the **description** (it's the description), the second is a `string` with the alert type and finally an object with different parameters, you can see them all in the [full api](https://belljs.vercel.app/api/references).
 
 ```js
 const bell = new Bell({
