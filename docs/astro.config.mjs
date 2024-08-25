@@ -3,11 +3,16 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://belljs.vercel.app',
 	integrations: [
 		starlight({
 			title: {
 				en: 'BellJs',
 				es: 'BellJs',
+			},
+			components: {
+				// Relative path to the custom component.
+				Head: './src/components/Head.astro',
 			},
 			defaultLocale: 'root',
 			locales: {
