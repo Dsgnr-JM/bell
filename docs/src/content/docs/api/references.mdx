@@ -1,0 +1,76 @@
+---
+title: Advanced References
+description: Get started with BellJs quickly using the package from any source.
+---
+
+import {Tabs,TabItem,Aside} from '@astrojs/starlight/components'
+
+If you got here it's because you want to further customize **BellJs** or at least know how it works, well this is the complete guide to all the fields in the library I hope you find them useful.
+
+## Instance parameters
+
+Let's first look at the parameters needed to create an alert using **BellJs**.
+
+### First parameter (texts)
+
+The first parameter is an `Object` that places the texts in the alert and has the following properties:
+
+|Property name|Description|Value|
+|---|---|---|
+|`title`|Primary text or alert title|`String`|
+|`description`|Secondary text or description of the alert|`String`|
+
+### Second parameter (types)
+
+The second parameter is a `String` that defines the type of alert:
+
+The second parameter is a `String` that indicates the type of alert, it is governed by these possible values:
+
+|Type|Description|
+|---|---|
+|`info`|Shows an information style in the alert|
+|`warning`|Shows a danger style in the alert|
+|`error`|Shows an error style in the alert|
+|`success`|Shows that something went well in the alert|
+|`promise`|Shows a loading style in the alert|
+|`none`|Does not show styles but also no icons|
+
+### Third parameter (customization)
+
+The third parameter is an `Object` that serves as a configuration parameter:
+
+|Property name|Description|Value|
+|---|---|---|
+|`animate`|Defines whether the alert will have animations, by default `true`|`Boolean`|
+|`isColored`|Defines whether the alert will have coloring, by default `true`|`Boolean`|
+|`transitionDuration`|Defines the time of the transitions|`Number`|
+|`position`|Defines the position, by default `bottom-right`|`bottom-left` - `bottom-left` - `bottom-right` - `top-left` - `top-left` - `top-right`|
+|`typeAnimation`|Alert animation type|`fade-in` - `fade-in-out` - `bound` - `bound-2`|
+|`screenTime`|Alert screen time|`Number`|
+|`expand`|Default expand effect `false|`Boolean`|
+|`theme`|Default alert theme `default`|`colors`- `light` - `String`|
+|`customClass`|Sets a CSS class to the alert|`String`|
+|`customStyles`|Sets styles to the alert|`Object`|
+|`customStyles.container *`|Sets styles to the alert container (any css property)|`Object`|
+|`customStyles.title *`|Sets styles to the alert title (any css property)|`Object`|
+|`customStyles.description *`|Set styles to the alert description (any css property)|`Object`|
+|`customStyles.icon *`|Set styles to the alert icon (any css property)|`Object`|
+|`customIcon`|Change the alert icon|`Svg`|
+|`customHTML`|Change the alert html|`HTML`|
+|`distance`|Distance of the alerts relative to the default screen to the default screen `30`|`Object`|
+|`distance.x`|Distance on the `x` axis depending on the chosen position if `right` or `left`|`Number`|
+|`distance.y`|Distance on the `y` axis depending on the chosen position if `top` or `bottom`|`Number`|
+|`gap`|Default gap between alerts `15`|`Number`|
+|`timeline`|Sets a timeline for the alert|`Boolean`|
+|`removeOn`|Defines how to remove the alert|`button` - `click`|
+
+### Bell Methods
+
+Different instance methods:
+
+|Method Name|Description|Parameters|
+|---|---|---|
+|`new Bell()`|Instances a `Bell`|(`Object`,`String`,`Object`)|
+|`launch()` |Launches the alert and displays it on the screen|`none`|
+|`dismiss()`|Removes the alert|`none`|
+|`promise()`|Uses a promise|(`Promise`,`State`)|

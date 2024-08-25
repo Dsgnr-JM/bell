@@ -1,0 +1,162 @@
+---
+title: Modificando el HTML
+description: Debido a que ahora bell puede usar html customizado pues se puede cambiar por completo las alertas.
+---
+
+import {Tabs, TabItem, Aside} from '@astrojs/starlight/components'
+import Touches from '../../../../components/TouchesPlay.astro'
+
+**BellJs ahora es completamente personalizables** con ello en mente puedes recrear la mayoria de alertas que hay en la web.
+
+## Como es esto posible?
+
+Se le agregaron dos nuevas propiedades para el tercer parametro de `Bell`, los mismos personalizan al maximo esta alerta, si te preguntas de cuales propiedades hablo pues me refiero a `customIcon`,`customClass`,`customStyles` y la mas potente `customHTML`, haciendo uso de ellas puedes generar alertas increibles y adaptables.
+
+### Cambiando estilos con customStyles
+
+Puedes cambiar los estilos de las alertas de `Bell` haciendo uso de esta propiedad, cualquier propiedad de estilo **CSS** que existe puede ser usado, aunque la compatibilidad dependera del navegador. Veamos un ejemplo:
+
+```js
+new Bell({
+	title: "Titulo de Bell",
+	description: "Descripcion de Bell"
+},"info",{
+	customStyles:{
+		description: {
+			color: "green",
+			"font-size": "1rem"
+		},
+		icon: {
+			color: "red"
+		}
+}
+}).launch()
+```
+
+Puedes modificar cualquier de las propiedades CSS que tengan presente los elementos en la alerta que hayas creado desde el titulo hasta los iconos.
+
+<Aside type="tip">
+	Para cambiar el ancho de alerta es necesario cambiar la varible CSS `--b_w`, no cambies directamente el `width` del contenedor.Ejemplo:
+	```js
+		// Cambio correcto del ancho de la alerta
+		container:{
+			"--b_w": "230px"
+		}
+	```
+</Aside>
+
+### Cambiando los iconos por defecto
+
+**BellJs** cuenta con 5 iconos por defecto, siendo estos `info`,`warning`,`success`,`error`,`promise` cada uno de ellos para una respectiva accion y estilo. Puede que quieras mejorar la personalizacion cambiando los iconos. Para cambiarlos solo debes modificarlos desde la propiedad `customIcon`, veamos un ejemplo:
+
+<Tabs>
+<TabItem label="Unico">
+```js
+const icono = `﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="none" stroke="#2486ca" stroke-width=".5" cx="100" cy="100" r="0"><animate attributeName="r" calcMode="spline" dur="2" values="1;80" keyTimes="0;1" keySplines="0 .2 .5 1" repeatCount="indefinite"/><animate attributeName="stroke-width" calcMode="spline" dur="2" values="0;25" keyTimes="0;1" keySplines="0 .2 .5 1" repeatCount="indefinite"/><animate attributeName="stroke-opacity" calcMode="spline" dur="2" values="1;0" keyTimes="0;1" keySplines="0 .2 .5 1" repeatCount="indefinite"/></circle></svg>`
+
+new Bell({
+	title: "Cambiando icono de informacion",
+},"info",{
+	customIcon: icono
+}).launch()
+``` 
+</TabItem>
+<TabItem label="Global">
+```bash
+import {bIcons} from 'bell-alert' // si usas modulos
+const icono = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150"><path fill="none" stroke="#B2B9BD" stroke-width="15" stroke-linecap="round" stroke-dasharray="300 385" d="M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z"><animate attributeName="stroke-dashoffset" calcMode="spline" dur="2" values="685;-685" keySplines="0 0 1 1" repeatCount="indefinite"/></path></svg>`
+
+bIcons.promise = icono
+``` 
+</TabItem>
+</Tabs>
+
+<Touches slug="es-modified-icon"/>
+
+Con esto cambiaremos los iconos unicamente o globalmente para todas las alertas.
+
+### Alerta con eventos haciendo uso de customHTML
+
+La mayor personalizacion de `Bell` se logra haciendo uso de la propiedad `customHTML`ya que con esto limpiamos completamente la alerta y diseñamos una nueva a nuestro gusto, claro con todas la bondades ya propuestas anteriormente. Vamos a crear una alerta como la de Vercel juntos:
+
+Lo primero que debemos hacer es crear el HTML y el CSS nuevo:
+
+<Tabs>
+<TabItem label="JavaScript">
+```js
+function removeAlert(){
+  bell.dismiss()
+}
+   const nuevoHTML = `
+<div class="c_alert">
+  <h2>Quieres completar la accion</h2>
+    <p>El usuario sera eliminado del registro</p>
+  <div>
+    <button>Cancelar</button>
+    <button id="button">Eliminar</button>
+  </div>
+</div>`
+
+```
+</TabItem>
+<TabItem label="CSS">
+```css
+.c_alert{
+    width: 100%;
+    line-height:1.5;
+}
+.c_alert h2{
+    font-size: .93rem;
+    font-weight: 600;
+}
+.c_alert p{
+    font-size: .92rem;
+    opacity: .8;
+}
+.c_alert > div{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    gap:4px;
+    margin-top: 9px;
+}
+.c_alert > div button{
+	cursor:pointer;
+	border:none;
+    padding: 4px 8px;
+    background: var(--b_t);
+    color: var(--b_bg);
+    font-size: .9rem;
+    border-radius: 5px;
+}
+.c_alert > div button:first-child{
+    background: transparent;
+    color: var(--b_t);
+}
+```
+</TabItem>
+</Tabs>
+
+<Aside type="tip">
+	Puedes ver que estamos usando variables de CSS, ya que `Bell` trabaja con variables, si quieres saber cuales son [AQUI ESTAN](../../api/references).
+</Aside>
+
+Con esto ya tenemos la estructura de nuestra alerta de **Vercel**, lo siguiente por hacer es cambiar la alerta por este nuevo HTML, eso se hace de la siguiente manera:
+
+```js
+const bell = new Bell({
+  title:""
+  },
+  "none",{
+  typeAnimation: "bound-2",
+  customHTML: nuevoHTML,
+  removeOn: "button",
+  screenTime: 10000
+})
+document.getElementById("button").addEventListener("click",removeAlert)
+bell.launch()
+```
+
+<Touches slug="es-modified-html"/>
+
+Puedes ver que la alerta cambio por completo, ya de aqui queda de tu parte que quieras diseñar.

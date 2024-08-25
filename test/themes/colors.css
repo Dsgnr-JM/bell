@@ -1,0 +1,31 @@
+/* Theme Colors */
+
+
+.b_c.colors.info {
+  --b_bg: rgb(57 167 213);
+  --b_d: rgb(238 247 255);
+  --b_svg: rgb(255 255 255);
+  --b_t: rgb(255 255 255);
+}
+
+.b_c.warning.colors {
+  --b_bg: rgb(255 144 72);
+  ;
+  --b_d: rgb(255 247 239 / 90%);
+  --b_t: rgb(255 255 255);
+  --b_svg: rgb(255 255 255);
+}
+
+.b_c.error.colors {
+  --b_bg: rgb(196 48 48);
+  --b_d: rgb(238 247 255 / 80%);
+  --b_t: rgb(255 255 255);
+  --b_svg: rgb(255 255 255);
+}
+
+.b_c.success.colors {
+  --b_bg: rgb(41 173 65);
+  --b_d: rgb(248 255 247 / 96%);
+  --b_t: rgb(255 255 255);
+  --b_svg: rgb(255 255 255);
+}

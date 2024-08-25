@@ -1,0 +1,101 @@
+---
+title: Getting started
+description: Get started with BellJs quickly using the package from any source.
+---
+
+import {Tabs,TabItem,Aside} from '@astrojs/starlight/components'
+import Touches from '../../../components/TouchesPlay.astro'
+
+BellJs is a lightweight, modern, customizable alert library built in vanilla JavaScript making it agnostic. This guide will help you get started with it in an easy way. Check out the [full api](../../api/references) for all the information..
+
+## Quick Start
+
+### Using the npm package
+
+To use BellJs in your web project you just need to run the following command inside your project.
+
+<Tabs>
+<TabItem label="npm">
+```bash
+npm i bell-alert
+``` 
+</TabItem>
+<TabItem label="pnpm">
+```bash
+pnpm add bell-alert
+```
+</TabItem>
+<TabItem label="yarn">
+```bash
+yarn i bell-alert
+```
+</TabItem>
+</Tabs>
+
+### Using the official cdn
+
+You can also use a **jsDelivr** cdn or **unpkg** to import the library, as follows.
+
+<Tabs>
+<TabItem label="jsDelivr">
+```html
+<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.css"/>
+<script href="https://www.unpkg.com/bell-alert/dist/bell.js"/>
+```
+</TabItem>
+<TabItem label="Unpkg">
+```html
+<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.css"/>
+<script href="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.js"/>
+```
+</TabItem>
+</Tabs>
+
+<Aside type="caution" title="Ojo">
+	These are the development versions so they are not minified, if you want to use a minified version put the `.min` before the file extension.
+</Aside>
+
+### Importing the library
+
+Depending on whether you used the **npm** package or the **esm** version you can use the **BellJs** modules:
+
+```js
+import Bell from "bell-alert"
+import "bell-alert/dist/bell.min.css" // If you are using a bundler like vite, webpack or other.
+```
+
+This will import the library into your project, so you can start using it.
+
+### Creating and using an alert.
+
+With the library already imported you can easily create and use alerts. You just need to create an instance of **Bell** and pass it the parameters.
+
+```js
+const bell = new Bell(params)
+```
+
+**BellJs** Accepts two required parameters and one optional one, the first is an object with the **title** (it's the title) and the **description** (it's the description), the second is a `string` with the alert type and finally an object with different parameters, you can see them all in the [full api](../../api/references).
+
+```js
+const bell = new Bell({
+title: "New alert",
+description: "BellJs is amazing and light"
+},"info")
+```
+
+Once the instance is created, all that's left is to display the alert. You can do this using the `launch` method of the same instance.
+
+```js
+bell.launch()
+```
+<Touches slug="en-started"/>
+
+### Experiment with BellJs
+
+Remember that BellJs is made to be customized to the maximum, due to its intuitive API it is very easy to configure it in different ways.
+
+- **Types**: Learn the different types of alerts in ["Alert Types"](../../learning-the-basic/choosing-the-type-of-alert).
+- **Themes**: Use and create any theme you can imagine in ["Custom and Community Themes"](../../learning-the-basic/themes).
+- **Configuration**: Change bell parameters and create something new, all following the ["Change everything"](../../learning-the-basic/customized-bell) guide.
+
+Follow the documentation to learn more about this beautiful alert library adaptable to your current design.

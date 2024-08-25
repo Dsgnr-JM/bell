@@ -1,0 +1,36 @@
+---
+title: Welcome to BellJs
+description: Library for generating quick, lightweight alerts that adapt to the design of your website or app.
+template: splash
+hero:
+  tagline: Library for generating quick, lightweight alerts that adapt to the design of your website or app.
+  image:
+    file: ../../assets/favicon.png
+  actions:
+    - text: Documentation
+      link: /getting-started/started
+      icon: right-arrow
+    - text: Playground
+      link: https://try.belljs.vercel.app
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Bell is:
+
+<CardGrid stagger>
+	<Card title="Agnostic" icon="pencil">
+		Works in any web environment that uses JavaScript.
+	</Card>
+	<Card title="Customizable" icon="add-document">
+		Customize your alert to the maximum and create new innovations.
+	</Card>
+	<Card title="Ease" icon="setting">
+		The configuration and API of **BellJs** is very friendly and easy.
+	</Card>
+	<Card title="Performance" icon="open-book">
+		Minimum weight, only 4kb, remember we only upload what is necessary.
+	</Card>
+</CardGrid>

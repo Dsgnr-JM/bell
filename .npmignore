@@ -1,0 +1,17 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+node_modules
+docs
+test
+src
+banner.svg
+bell.css
+gulpfile.js
+index.js
+pnpm-lock.yaml

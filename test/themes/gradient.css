@@ -1,0 +1,61 @@
+/* Theme gradient */
+
+.b_c.gradient {
+  border: none;
+}
+
+.b_c.gradient.info {
+  background: linear-gradient(60deg, #cde3fb, #fff 20%);
+  --b_t: rgb(10 10 10 / .7);
+  --b_svg: rgb(48 160 207);
+  --b_t: rgb(10 10 10);
+}
+
+.b_c.warning.gradient {
+  background: linear-gradient(60deg, #fbe1cd, #fff 20%);
+  --b_t: rgb(10 10 10 / .7);
+  --b_t: rgb(10 10 10);
+  --b_svg: rgb(162 87 0);
+}
+
+.b_c.error.gradient {
+  background: linear-gradient(60deg, #fbcdcd, #fff 20%);
+  --b_t: rgb(10 10 10 / .7);
+  --b_t: rgb(10 10 10);
+  --b_svg: rgb(162 0 0);
+}
+
+.b_c.success.gradient {
+  background: linear-gradient(60deg, #cdfbcf, #fff 20%);
+  --b_t: rgb(10 10 10 / .7);
+  --b_t: rgb(10 10 10);
+  --b_svg: rgb(0 162 91);
+}
+
+.dark .gradient {
+  --b_t: white !important;
+}
+
+.dark .gradient.success {
+  background: linear-gradient(80deg, #254626, #252726 22%);
+  --b_d: rgb(239 255 244 / 82%);
+  --b_svg: rgb(0 162 91);
+}
+
+.dark .gradient.error {
+  background: linear-gradient(80deg, #4a1f1f, #2b2424 22%);
+  --b_d: rgb(255 244 244 / 83%);
+  --b_svg: rgb(203 53 53);
+}
+
+.dark .gradient.warning {
+  background: linear-gradient(80deg, #53451a, #2b2823 22%);
+  --b_d: rgb(255 250 236/.8);
+  --b_svg: rgb(217 163 11);
+}
+
+.dark .gradient.info {
+  background: linear-gradient(80deg, #2a4551, #212425 22%);
+  --b_d: rgb(237 248 255 / 70%);
+  --b_svg: rgb(48 160 207);
+}

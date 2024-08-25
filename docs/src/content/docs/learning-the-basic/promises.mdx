@@ -1,0 +1,43 @@
+---
+title: Promises
+description: Use promises to improve your users' UX when something is loading.
+---
+
+import {Tabs, TabItem, Aside} from '@astrojs/starlight/components'
+import Touches from '../../../components/TouchesPlay.astro'
+
+**BellJs** now supports promises, this means that you can show a loading layout while loading a request for a promise.
+
+To use promises in **Bell** you just have to use the promises method of that instance. Let's see an example:
+
+The first thing we do is create a *promise* in JavaScript and the states that the promise will have are: `pending`, `success` and `error`.
+
+```js
+const promise = new Promise((resolve,reject) =>{
+setTimeout(()=>{
+resolve()
+},10000)
+})
+const state = {
+pending:"Pending promise",
+success:"Resolved promise",
+error:"Bad promise"
+}
+```
+
+Then we create an instance of `Bell`, we pass it a `title` that will serve as a placeholder and the `promise` type.
+
+```js
+const bell = new Bell({
+title: "Placeholder"
+},"promise")
+```
+
+Finally we use the `promise` method and we pass it the states and the promise as parameters:
+
+```js
+bell.promise(promise, state)
+```
+<Touches slug="en-promises" isPromise="true"/>
+
+And that's it, you can now use promises in `BellJs` with `fetch` or others.

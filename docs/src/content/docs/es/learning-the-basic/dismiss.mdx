@@ -1,0 +1,30 @@
+---
+title: Remover la alerta
+description: Aprende los metodos para quitar la alerta de la pantalla.
+---
+
+import Touches from '../../../../components/TouchesPlay.astro'
+
+La remocion de las alertas es un tema importante ya que si quisieramos tener el control total sobre las alertas necesitaremos comprender esta opcion.
+
+Las intancias de `Bell` tienen un metodo publico llamado `dimiss` que se encarga de eliminar la alerta de la pantalla, dependiendo de la propiedad `animate` la alerta tendra o no una animacion al salir.
+
+## Eventos de eliminacion
+
+Ademas del metodo `dimiss` hay propiedades en el tercer parametro de `Bell` que sirven como eventos de eliminacion de alertas, a la propiedad a la que me refiero es a `removeOn` que puede tener los valores `button` o `click`. Ambos remueven la alerta pero de una forma diferente:
+
+- **`button`**: Crea un boton para eliminar la alerta.
+- **`click`**: Elimina la alerta al hacer un click.
+
+Veamos un ejemplo de como usarlo con un boton:
+
+```js
+new Bell({
+	description: "Removiendo la alerta con un boton"
+	},"info",{
+	removeOn:"button",
+	screenTime: "10000"
+}).launch()
+```
+
+<Touches slug="es-removal"/>

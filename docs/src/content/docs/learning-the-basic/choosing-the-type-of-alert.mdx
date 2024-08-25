@@ -1,0 +1,28 @@
+---
+title: Choosing the type of alerts
+description: Switch between alert types to better display information to the user.
+---
+
+import Touches from '../../../components/TouchesPlay.astro'
+
+The second parameter of **Bell** is a `String` and refers to the type of alert, depending on which one you choose the alert will become different, some of the types are:
+
+- **`info`**: Alerts to display information.
+- **`error`**: Alerts to report an error.
+- **`success`**: Alerts to show that a goal was achieved.
+- **`warning`**: Alerts to show that something happened, not necessarily a critical error.
+- **`promise`**: Alerts to indicate that something is loading.
+
+You can use any of these in your alerts, here is an example:
+
+```js
+new Bell({
+title: "A serious error occurred",
+},"error").launch()
+```
+
+<Touches slug="en-choosing-the-type-of-alert"/>
+
+This will display an alert with the type of error.
+
+This property is required.

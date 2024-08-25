@@ -1,0 +1,44 @@
+---
+title: Las promesas
+description: Usa las promesas para mejorar el UX de tus usuarios cuando algo esta cargando.
+---
+
+import {Tabs, TabItem, Aside} from '@astrojs/starlight/components'
+import Touches from '../../../../components/TouchesPlay.astro'
+
+**BellJs** ahora es compatible con promesas, esto quiere decir que puedes mostrar un diseño de carga mientras cargas una peticion de una promesa.
+
+Para usar los promesas en **Bell** solo tienes que usar el metodo promises de dicha instancia. Veamos un ejemplo:
+
+Lo primero que hacemos es crear una *promesa* en JavaScript y los estados que tendra la promesa los cuales son: `pending`, `success` y `error`.
+
+```js
+const promise = new Promise((resolve,reject) =>{
+	setTimeout(()=>{
+		resolve()
+	},10000)
+})
+const state = {
+	pending:"Promesa pendiente",
+	success:"Promesa resuelta",
+	error:"Promesa erronea"
+}
+```
+
+Luego creamos una instancia de `Bell`, le pasamos un `title` que nos servira como placeholder y el tipo `promise`.
+
+```js
+const bell = new Bell({
+	title: "Placeholder"
+},"promise")
+```
+
+Por ultimos usamos el metodo `promise` y le pasamos por parametros los estados y la promesa:
+
+```js
+bell.promise(promise, state)
+```
+<Touches slug="es-promises" isPromise="true"/>
+
+Y listo ya puedes usar las promesas en `BellJs` con `fetch` u otros.
+

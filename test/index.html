@@ -1,0 +1,43 @@
+<title>Test Bell</title>
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="themes/chackra.css">
+<link rel="stylesheet" href="themes/colors.css">
+<link rel="stylesheet" href="themes/gradient.css">
+<link rel="stylesheet" href="themes/light.css">
+<style>
+.c_alert{
+    width: 100%;
+    line-height:1.5;
+}
+.c_alert h2{
+    font-size: .93rem;
+    font-weight: 600;
+}
+.c_alert p{
+    font-size: .92rem;
+    opacity: .8;
+}
+.c_alert > div{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    gap:4px;
+    margin-top: 9px;
+}
+.c_alert > div button{
+	cursor:pointer;
+	border:none;
+    padding: 4px 8px;
+    background: var(--b_t);
+    color: var(--b_bg);
+    font-size: .9rem;
+    border-radius: 5px;
+}
+.c_alert > div button:first-child{
+    background: transparent;
+    color: var(--b_t);
+}
+</style>
+<button>Click me</button>
+
+<script type="module" src="./test.js"></script>
