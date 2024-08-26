@@ -1,6 +1,6 @@
 {
   "name": "bell-alert",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Light, customizable and agnostic alert library.",
   "main": "dist/bell.esm.min.js",
   "module": "dist/bell.esm.min.js",
