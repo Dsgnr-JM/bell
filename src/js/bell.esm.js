@@ -16,8 +16,8 @@ export const bIcons = {
 const bellState = {
   num: 0,
   distance:{
-  	x:30,
-  	y:30
+    x:30,
+    y:30
   },
   gap:15,
   maxHeight: 1000
@@ -25,11 +25,11 @@ const bellState = {
 /**
  * @param {String} e
  * */
-const $ = e => document.querySelector(e)
+const _$ = e => document.querySelector(e)
 /**
  * @param {String} e
  * */
-const $$ = e => document.querySelectorAll(e)
+const _$$ = e => document.querySelectorAll(e)
 /**
  * @param {String} e
  * */
@@ -59,15 +59,23 @@ export default class Bell {
    * @param {TipoAnimacion} options.typeAnimation - Tipo de animacion
    * @param {Number} options.screenTime - Tiempo en pantalla
    * @param {Boolean} options.expand - Efecto de Expansion
-   * @param {|'colors','default'} options.theme - Tema de la alerta
-   * @param {|'none','default' | 'full'} options.borderRadius - Border radius del contenedor de la alerta
+   * @param {String} options.customHTML - HTML customizable
+   * @param {String} options.customStyles - Estilos customizable
+   * @param {String} options.customIcon - Iconos customizable
+   * @param {String} options.customClass - Clases CSS customizable
+   * @param {Object} options.distance - Distancia de la alerta respecto a la pantalla
+   * @param {Number} options.distance.x - Eje x
+   * @param {Number} options.distance.y - Eje y
+   * @param {Number} options.gap - Gapping entre alertas
+   * @param {'button'|'click'} options.removeOn - Evento de remover la alerta
+   * @param {|'colors','default'|'chackra'|'light'|'gradient'|String} options.theme - Tema de la alerta
    * @param {Boolean} options.timeline - Linea de tiempo
    * @returns {Bell} - Clase Bell
    */
   constructor(text, type, options={}) {
     this.text = text;
     this.type = type;
-    const {animate=true,isColored=true,transitionDuration=300,position="bottom-right",typeAnimation="fade-in",screenTime=3000,expand=false,theme="default",customClass,customStyles,customIcon,customHTML,timeline,removeOn,distance,gap} = options
+    const {animate=true,isColored=true,transitionDuration=300,position="bottom-right",typeAnimation="ease-in",screenTime=3000,expand=false,theme="default",customClass,customStyles,customIcon,customHTML,timeline,removeOn,distance,gap} = options
     this.transitionDuration = transitionDuration ?? 300
     this.position = position.split("-");
     this.classPosition = this.position.join(".")
@@ -117,7 +125,7 @@ export default class Bell {
       [this.$bellContainer, this.$bellTextContainer].forEach(i => i.style.transition = "none")
     }
 
-    this.$bellParent = $(`.b_p.${this.classPosition}`)
+    this.$bellParent = _$(`.b_p.${this.classPosition}`)
 
 
     if (!this.$bellParent) {
@@ -204,11 +212,11 @@ export default class Bell {
     $bells.forEach(($bItem,i) => {
       $bItem.style.scale = scale
       $bItem.style[yOrigin] = yDistance + "px"
-    	if(i < 2){
+      if(i < 2){
         scale = (1 - ((i+1) * 0.06)).toFixed(2)
-    	   yDistance += bellState.gap
+         yDistance += bellState.gap
       }
-	})
+  })
     let top = bellState.distance.y;
     if ($bells && firstBell) bellState.maxHeight = firstBell?.getAttribute("bell-height");
     $bells.forEach(($bell, i) => {
@@ -238,7 +246,7 @@ export default class Bell {
       this.$bellContainer.appendChild($closeB)
       $closeB.addEventListener("click", this.dismiss.bind(this))
       }
-      this.$bellNums = $$(`.b_c.${this.classPosition}`);
+      this.$bellNums = _$$(`.b_c.${this.classPosition}`);
       this.setPositions(this.$bellNums)
       this.$bellContainer.classList.add("active");
       if (!isPromise) {
@@ -258,7 +266,7 @@ export default class Bell {
   dismiss() {
     clearTimeout(this.timer)
     /* Metodo que saca al bellAlert de la pantalla y remueve el elemento del DOM, ademas quita el hover */
-    this.$bellNums = $$(`.b_c.active.${this.classPosition}`);
+    this.$bellNums = _$$(`.b_c.active.${this.classPosition}`);
     let $bells = [...this.$bellNums].filter($bell => {
       return $bell.getAttribute("bell-num") !== this.$bellContainer.getAttribute("bell-num")
     })
@@ -273,7 +281,7 @@ export default class Bell {
 
     setTimeout(() => {
       this.$bellContainer.remove();
-      if ($$(`.b_c.${this.classPosition}`).length === 0) {
+      if (_$$(`.b_c.${this.classPosition}`).length === 0) {
         this.$bellParent.remove();
         bellState.num = 0
       }
