@@ -22,14 +22,14 @@ declare module 'bell-alert' {
     position?: 'top-left' | 'top-right' | 'top-center' | 'bottom-left' | 'bottom-right' | 'bottom-center'; // Position of notification (default: inherited from bellState)
     distance?: BellDistance;
     gap?: number;
-    removeOn?: 'none'|'click'|'button';
+    removeOn?: 'click'|'button';
     timeline?: boolean;
     customHTML?: string;
     customIcon?: string;
     customStyles?: BellStyles;
     customClass?: string;
-    theme?: 'default'|'colors'|'light'|'gradient'|'chackra'|null;
-    typeAnimation?: 'fade-in' | 'fade-out' | 'bound' | 'bound-2'; // Type of animation (default: 'fade-in')
+    theme?: 'default'|'colors'|'light'|'gradient'|'chackra'|String;
+    typeAnimation?: 'ease-in' | 'ease-in-out' | 'bound' | 'bound-2'; // Type of animation (default: 'fade-in')
     screenTime?: number; // Duration for which notification stays visible (default: 1500ms)
     expand?: boolean; // Enable hover effect to expand content (default: false)
   }
