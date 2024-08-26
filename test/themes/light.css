@@ -33,7 +33,7 @@
   --b_svg: #4CAF50;
 }
 
-.dark .b_c.light {
+.dark .b_c.light, :root[data-theme='dark'] .b_c.light {
   --b_bg: rgb(48 44 44);
   --b_d: rgb(227 227 227);
   --b_t: rgb(255 255 255);

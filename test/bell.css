@@ -32,9 +32,9 @@ html.dark {
   --b_br: rgba(0, 0, 0, 0.05);
 }
 .b_p,.b_c,.b_p *,.b_c *{
-	box-sizing:border-box;
-	margin:0;
-	padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 /* Parent of bell */
@@ -109,8 +109,8 @@ html.dark {
   cursor:pointer;
   border:none;
   position: absolute;
-  right: 6px;
-  top: 6px;
+  right: 5px;
+  top: 5px;
 }
 
 .b_close svg {
@@ -354,7 +354,7 @@ html.dark {
   --b_bg: rgb(246, 255, 250);
   --b_br: rgb(53 137 0 / .35);
 }
-.dark .b_c.info {
+.dark .b_c.info, :root[data-theme='dark'] .b_c.info {
   --b_svg: rgb(47 130 206);
   --b_t: rgb(64 143 217);
   --b_d: rgb(113 191 238 / 80%);
@@ -362,7 +362,7 @@ html.dark {
   --b_br: rgb(32 77 95 / 35%);
 }
 
-.dark .b_c.warning {
+.dark .b_c.warning, :root[data-theme='dark'] .b_c.warning{
   --b_svg: rgb(212 104 36);
   --b_t: rgb(185 100 46);
   --b_d: rgb(220 150 72 / 80%);
@@ -370,7 +370,7 @@ html.dark {
   --b_br: rgb(133 100 9 / 30%);
 }
 
-.dark .b_c.error {
+.dark .b_c.error, :root[data-theme='dark'] .b_c.error{
   --b_svg: rgb(208 59 59);
   --b_t: rgb(222 72 72 / 90%);
   --b_d: rgb(225 94 94 / 80%);
@@ -378,7 +378,7 @@ html.dark {
   --b_br: rgb(143 47 47 / 30%);
 }
 
-.dark .b_c.success {
+.dark .b_c.success, :root[data-theme='dark'] .b_c.success{
   --b_svg: rgb(57 206 65);
   --b_t: rgb(85 185 76);
   --b_d: rgb(137 235 118 / 80%);
@@ -386,7 +386,7 @@ html.dark {
   --b_br: rgb(53 137 0 / 18%);
 }
 
-.dark .b_c {
+.dark .b_c, :root[data-theme='dark'] .b_c{
   --b_bg: rgb(48 44 44);
   --b_d: rgb(227 227 227);
   --b_t: rgb(255 255 255);

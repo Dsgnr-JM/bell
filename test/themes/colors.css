@@ -1,29 +1,34 @@
 /* Theme Colors */
+.b_c.colors{
+  border: none;
+  --b_bg: rgb(200 200 200);
+}
+:root[data-theme='dark'] .b_c, .dark .b_c{
+  --b_bg: rgb(43 43 43);
+}
 
-
-.b_c.colors.info {
+.b_c.colors.info, :root[data-theme='dark'] .colors.info{
   --b_bg: rgb(57 167 213);
   --b_d: rgb(238 247 255);
   --b_svg: rgb(255 255 255);
   --b_t: rgb(255 255 255);
 }
 
-.b_c.warning.colors {
+.b_c.warning.colors, :root[data-theme='dark'] .colors.warning{
   --b_bg: rgb(255 144 72);
-  ;
   --b_d: rgb(255 247 239 / 90%);
   --b_t: rgb(255 255 255);
   --b_svg: rgb(255 255 255);
 }
 
-.b_c.error.colors {
+.b_c.error.colors, :root[data-theme='dark'] .colors.error{
   --b_bg: rgb(196 48 48);
   --b_d: rgb(238 247 255 / 80%);
   --b_t: rgb(255 255 255);
   --b_svg: rgb(255 255 255);
 }
 
-.b_c.success.colors {
+.b_c.success.colors, :root[data-theme='dark'] .colors.success{
   --b_bg: rgb(41 173 65);
   --b_d: rgb(248 255 247 / 96%);
   --b_t: rgb(255 255 255);

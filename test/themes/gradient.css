@@ -2,6 +2,8 @@
 
 .b_c.gradient {
   border: none;
+  box-shadow: 0 2px 10px hsl(0deg 0% 4% / 11%);
+  background: linear-gradient(60deg, #e9e9e9, #fff 20%);
 }
 
 .b_c.gradient.info {
@@ -32,29 +34,30 @@
   --b_svg: rgb(0 162 91);
 }
 
-.dark .gradient {
+.dark .gradient, :root[data-theme='dark'] .gradient {
   --b_t: white !important;
+  background: linear-gradient(60deg, #494747, #302c2c 22%);
 }
 
-.dark .gradient.success {
+.dark .gradient.success, :root[data-theme='dark'] .success.gradient{
   background: linear-gradient(80deg, #254626, #252726 22%);
   --b_d: rgb(239 255 244 / 82%);
   --b_svg: rgb(0 162 91);
 }
 
-.dark .gradient.error {
+.dark .gradient.error, :root[data-theme='dark'] .error.gradient{
   background: linear-gradient(80deg, #4a1f1f, #2b2424 22%);
   --b_d: rgb(255 244 244 / 83%);
   --b_svg: rgb(203 53 53);
 }
 
-.dark .gradient.warning {
+.dark .gradient.warning, :root[data-theme='dark'] .warning.gradient{
   background: linear-gradient(80deg, #53451a, #2b2823 22%);
   --b_d: rgb(255 250 236/.8);
   --b_svg: rgb(217 163 11);
 }
 
-.dark .gradient.info {
+.dark .gradient.info, :root[data-theme='dark'] .info.gradient{
   background: linear-gradient(80deg, #2a4551, #212425 22%);
   --b_d: rgb(237 248 255 / 70%);
   --b_svg: rgb(48 160 207);

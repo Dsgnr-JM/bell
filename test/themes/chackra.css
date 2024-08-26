@@ -33,26 +33,26 @@
   --b_svg: rgb(0 162 91);
 }
 
-.dark .success.chackra {
+.dark .success.chackra, :root[data-theme='dark'] .success.chackra{
   --b_bg: rgb(31 41 36);
   --b_t: rgb(70 228 123);
   --b_d: rgb(70 228 123/.65);
 }
 
-.dark .error.chackra {
+.dark .error.chackra, :root[data-theme='dark'] .error.chackra{
   --b_bg: rgb(52 32 32);
   --b_d: rgb(246 109 109/.8);
   --b_t: rgb(246 109 109);
   --b_svg: rgb(195 53 53);
 }
 
-.dark .info.chackra {
+.dark .info.chackra, :root[data-theme='dark'] .info.chackra{
   --b_bg: rgb(29 44 48);
   --b_d: rgb(134 208 228 / .7);
   --b_t: rgb(134 208 228);
 }
 
-.dark .warning.chackra {
+.dark .warning.chackra, :root[data-theme='dark'] .warning.chackra{
   --b_bg: rgb(48 36 24);
   --b_d: rgb(235 186 138 / .7);
   --b_t: rgb(235 186 138);
